@@ -443,6 +443,7 @@
 <section id="que-aporta-lime">
 <h2>Qué aporta LIME<a class="headerlink" href="#que-aporta-lime" title="Link to this heading">#</a></h2>
 <p>Complementa las métricas: muestra por qué se equivocan los modelos en casos concretos y revela el costo de interpretar en un entorno distribuido (unas 55 veces más lento por explicación). Sus límites (estocástico, local, fidelidad moderada) se detallan en el capítulo 5.</p>
+<p>En los cuatro préstamos explicados, <strong>la tasa de interés es la variable que más pesa</strong>, seguida del FICO y del DTI (y del plazo en scikit-learn). Los errores que cometen los modelos son errores <em>confiados</em> (P = 0.74 a 0.87 en los falsos positivos y 0.02 en los falsos negativos): en los falsos negativos todas las señales disponibles indicaban bajo riesgo, de modo que el incumplimiento probablemente se debió a factores que el conjunto de datos no recoge. Una limitación práctica: en PySpark las variables salieron sin nombre (<code class="docutils literal notranslate"><span class="pre">x0</span></code>, <code class="docutils literal notranslate"><span class="pre">x1</span></code>, …), lo que obligó a identificarlas por orden y por umbral; en un trabajo futuro conviene propagar los nombres desde el <em>pipeline</em>.</p>
 </section>
 <section id="efecto-de-cada-condicion-obligatoria">
 <h2>Efecto de cada condición obligatoria<a class="headerlink" href="#efecto-de-cada-condicion-obligatoria" title="Link to this heading">#</a></h2>

@@ -45,6 +45,8 @@ Mediana aproximada frente a exacta, desviación muestral frente a poblacional, `
 ## Qué aporta LIME
 Complementa las métricas: muestra por qué se equivocan los modelos en casos concretos y revela el costo de interpretar en un entorno distribuido (unas 55 veces más lento por explicación). Sus límites (estocástico, local, fidelidad moderada) se detallan en el capítulo 5.
 
+En los cuatro préstamos explicados, **la tasa de interés es la variable que más pesa**, seguida del FICO y del DTI (y del plazo en scikit-learn). Los errores que cometen los modelos son errores *confiados* (P = 0.74 a 0.87 en los falsos positivos y 0.02 en los falsos negativos): en los falsos negativos todas las señales disponibles indicaban bajo riesgo, de modo que el incumplimiento probablemente se debió a factores que el conjunto de datos no recoge. Una limitación práctica: en PySpark las variables salieron sin nombre (`x0`, `x1`, …), lo que obligó a identificarlas por orden y por umbral; en un trabajo futuro conviene propagar los nombres desde el *pipeline*.
+
 ## Efecto de cada condición obligatoria
 | Condición | Efecto sobre el estudio |
 |---|---|
