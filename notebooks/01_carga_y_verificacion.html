@@ -381,7 +381,6 @@
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#declarar-el-hardware">3. Declarar el hardware</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cargar-el-csv-completo">4. Cargar el CSV completo</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#revisar-loan-status">5. Revisar <code class="docutils literal notranslate"><span class="pre">loan_status</span></code></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#que-copiar-y-pegarme-en-el-chat">👉 Qué copiar y pegarme en el chat</a></li>
 </ul>
             </nav>
         </div>
@@ -397,13 +396,18 @@
 <h1>Paso 1 · Carga y verificación del dataset (Lending Club)<a class="headerlink" href="#paso-1-carga-y-verificacion-del-dataset-lending-club" title="Link to this heading">#</a></h1>
 <p><strong>Objetivo de este notebook:</strong> comprobar que Colab ve tu archivo, que se carga <em>completo</em> (sin muestreo, como exige el enunciado) y entender qué trae la columna <code class="docutils literal notranslate"><span class="pre">loan_status</span></code>, que es la base de la variable objetivo <code class="docutils literal notranslate"><span class="pre">default</span></code>.</p>
 <p><strong>Por qué empezamos aquí:</strong> antes de modelar hay que saber exactamente con cuántas filas trabajamos y qué categorías tiene el target. De eso dependen todas las decisiones posteriores.</p>
-<p>Ejecuta las celdas en orden (Shift + Enter) y copia lo que salga en las celdas marcadas con 👉.</p>
+<p>Las celdas se ejecutan en orden.</p>
 <section id="conectar-google-drive">
 <h2>1. Conectar Google Drive<a class="headerlink" href="#conectar-google-drive" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">google.colab</span><span class="w"> </span><span class="kn">import</span> <span class="n">drive</span>
 <span class="n">drive</span><span class="o">.</span><span class="n">mount</span><span class="p">(</span><span class="s1">'/content/drive'</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Mounted at /content/drive
 </pre></div>
 </div>
 </div>
@@ -424,7 +428,18 @@
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'  </span><span class="si">{</span><span class="n">f</span><span class="si">}</span><span class="s1">  (</span><span class="si">{</span><span class="n">tam</span><span class="si">:</span><span class="s1">,.0f</span><span class="si">}</span><span class="s1"> MB)'</span><span class="p">)</span>
 
 <span class="c1"># Si subiste el .zip de Kaggle, descomenta la siguiente línea (solo la primera vez):</span>
-<span class="c1"># !unzip -n "{RUTA}"/*.zip -d "{RUTA}"</span>
+<span class="err">!</span><span class="n">unzip</span> <span class="o">-</span><span class="n">n</span> <span class="s2">"</span><span class="si">{RUTA}</span><span class="s2">"</span><span class="o">/*.</span><span class="n">zip</span> <span class="o">-</span><span class="n">d</span> <span class="s2">"</span><span class="si">{RUTA}</span><span class="s2">"</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Contenido de la carpeta:
+  archive.zip  (1,357 MB)
+Archive:  /content/drive/MyDrive/ML_LendingClub/archive.zip
+  inflating: /content/drive/MyDrive/ML_LendingClub/accepted_2007_to_2018Q4.csv.gz  
+  inflating: /content/drive/MyDrive/ML_LendingClub/accepted_2007_to_2018q4.csv/accepted_2007_to_2018Q4.csv  
+  inflating: /content/drive/MyDrive/ML_LendingClub/rejected_2007_to_2018Q4.csv.gz  
+  inflating: /content/drive/MyDrive/ML_LendingClub/rejected_2007_to_2018q4.csv/rejected_2007_to_2018Q4.csv  
 </pre></div>
 </div>
 </div>
@@ -433,6 +448,11 @@
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">archivos</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="n">RUTA</span> <span class="o">+</span> <span class="s1">'/*accepted*'</span><span class="p">))</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">'Archivos candidatos (aceptados):'</span><span class="p">,</span> <span class="n">archivos</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Archivos candidatos (aceptados): []
 </pre></div>
 </div>
 </div>
@@ -446,6 +466,12 @@
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span><span class="o">,</span><span class="w"> </span><span class="nn">psutil</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">'Núcleos (CPU):'</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">cpu_count</span><span class="p">())</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">'RAM total (GB):'</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">psutil</span><span class="o">.</span><span class="n">virtual_memory</span><span class="p">()</span><span class="o">.</span><span class="n">total</span> <span class="o">/</span> <span class="mf">1e9</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Núcleos (CPU): 8
+RAM total (GB): 54.8
 </pre></div>
 </div>
 </div>
@@ -467,6 +493,39 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Tiempo de carga con pandas: 50.7 s
+Dimensión (filas, columnas): (2260701, 151)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">glob</span><span class="o">,</span><span class="w"> </span><span class="nn">os</span>
+<span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="n">RUTA</span> <span class="o">+</span> <span class="s1">'/**/*'</span><span class="p">,</span> <span class="n">recursive</span><span class="o">=</span><span class="kc">True</span><span class="p">)):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">RUTA</span><span class="p">,</span> <span class="s1">''</span><span class="p">),</span> <span class="sa">f</span><span class="s1">'(</span><span class="si">{</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">getsize</span><span class="p">(</span><span class="n">f</span><span class="p">)</span><span class="o">/</span><span class="mf">1e6</span><span class="si">:</span><span class="s1">,.0f</span><span class="si">}</span><span class="s1"> MB)'</span> <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">f</span><span class="p">)</span> <span class="k">else</span> <span class="s1">'(carpeta)'</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/archive.zip (1,357 MB)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">archivos</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">f</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="n">RUTA</span> <span class="o">+</span> <span class="s1">'/*accepted*'</span><span class="p">)</span> <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">f</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">archivos</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>['/content/drive/MyDrive/ML_LendingClub/accepted_2007_to_2018Q4.csv.gz']
+</pre></div>
+</div>
+</div>
 </div>
 </section>
 <section id="revisar-loan-status">
@@ -482,6 +541,25 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>loan_status
+Fully Paid                                             1076751
+Current                                                 878317
+Charged Off                                             268559
+Late (31-120 days)                                       21467
+In Grace Period                                           8436
+Late (16-30 days)                                         4349
+Does not meet the credit policy. Status:Fully Paid        1988
+Does not meet the credit policy. Status:Charged Off        761
+Default                                                     40
+NaN                                                         33
+Name: count, dtype: int64
+
+Total filas: 2260701
+Fully Paid + Charged Off: 1345310
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -491,17 +569,184 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Columna id presente: True
+Primeras 5 columnas: ['id', 'member_id', 'loan_amnt', 'funded_amnt', 'funded_amnt_inv']
+</pre></div>
 </div>
-</section>
-<section id="que-copiar-y-pegarme-en-el-chat">
-<h2>👉 Qué copiar y pegarme en el chat<a class="headerlink" href="#que-copiar-y-pegarme-en-el-chat" title="Link to this heading">#</a></h2>
-<ol class="arabic simple">
-<li><p>El nombre del archivo y su tamaño (sección 2).</p></li>
-<li><p>Núcleos y RAM de este Colab (sección 3).</p></li>
-<li><p>Tiempo de carga y dimensión (sección 4).</p></li>
-<li><p>La tabla completa de <code class="docutils literal notranslate"><span class="pre">loan_status</span></code> (sección 5).</p></li>
-</ol>
-<p>Con eso decidimos juntas, antes de seguir, cómo definir el 0 del target y qué conjunto es el «dataset completo» del enunciado.</p>
+<div class="output text_html">
+  <div id="df-d705a3e4-5a7e-44ea-b3b1-019ed1bea89c" class="colab-df-container">
+    <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>loan_amnt</th>
+      <th>int_rate</th>
+      <th>annual_inc</th>
+      <th>dti</th>
+      <th>purpose</th>
+      <th>home_ownership</th>
+      <th>addr_state</th>
+      <th>loan_status</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>3600.0</td>
+      <td>13.99</td>
+      <td>55000.0</td>
+      <td>5.91</td>
+      <td>debt_consolidation</td>
+      <td>MORTGAGE</td>
+      <td>PA</td>
+      <td>Fully Paid</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>24700.0</td>
+      <td>11.99</td>
+      <td>65000.0</td>
+      <td>16.06</td>
+      <td>small_business</td>
+      <td>MORTGAGE</td>
+      <td>SD</td>
+      <td>Fully Paid</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>20000.0</td>
+      <td>10.78</td>
+      <td>63000.0</td>
+      <td>10.78</td>
+      <td>home_improvement</td>
+      <td>MORTGAGE</td>
+      <td>IL</td>
+      <td>Fully Paid</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>35000.0</td>
+      <td>14.85</td>
+      <td>110000.0</td>
+      <td>17.06</td>
+      <td>debt_consolidation</td>
+      <td>MORTGAGE</td>
+      <td>NJ</td>
+      <td>Current</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>10400.0</td>
+      <td>22.45</td>
+      <td>104433.0</td>
+      <td>25.37</td>
+      <td>major_purchase</td>
+      <td>MORTGAGE</td>
+      <td>PA</td>
+      <td>Fully Paid</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+    <div class="colab-df-buttons">
+
+  <div class="colab-df-container">
+    <button class="colab-df-convert" onclick="convertToInteractive('df-d705a3e4-5a7e-44ea-b3b1-019ed1bea89c')"
+            title="Convert this dataframe to an interactive table."
+            style="display:none;">
+
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960">
+    <path d="M120-120v-720h720v720H120Zm60-500h600v-160H180v160Zm220 220h160v-160H400v160Zm0 220h160v-160H400v160ZM180-400h160v-160H180v160Zm440 0h160v-160H620v160ZM180-180h160v-160H180v160Zm440 0h160v-160H620v160Z"/>
+  </svg>
+    </button>
+
+  <style>
+    .colab-df-container {
+      display:flex;
+      gap: 12px;
+    }
+
+    .colab-df-convert {
+      background-color: #E8F0FE;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      fill: #1967D2;
+      height: 32px;
+      padding: 0 0 0 0;
+      width: 32px;
+    }
+
+    .colab-df-convert:hover {
+      background-color: #E2EBFA;
+      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+      fill: #174EA6;
+    }
+
+    .colab-df-buttons div {
+      margin-bottom: 4px;
+    }
+
+    [theme=dark] .colab-df-convert {
+      background-color: #3B4455;
+      fill: #D2E3FC;
+    }
+
+    [theme=dark] .colab-df-convert:hover {
+      background-color: #434B5C;
+      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+      fill: #FFFFFF;
+    }
+  </style>
+
+    <script>
+      const buttonEl =
+        document.querySelector('#df-d705a3e4-5a7e-44ea-b3b1-019ed1bea89c button.colab-df-convert');
+      buttonEl.style.display =
+        google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+      async function convertToInteractive(key) {
+        const element = document.querySelector('#df-d705a3e4-5a7e-44ea-b3b1-019ed1bea89c');
+        const dataTable =
+          await google.colab.kernel.invokeFunction('convertToInteractive',
+                                                    [key], {});
+        if (!dataTable) return;
+
+        const docLinkHtml = 'Like what you see? Visit the ' +
+          '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
+          + ' to learn more about interactive tables.';
+        element.innerHTML = '';
+        dataTable['output_type'] = 'display_data';
+        await google.colab.output.renderOutput(dataTable, element);
+        const docLink = document.createElement('div');
+        docLink.innerHTML = docLinkHtml;
+        element.appendChild(docLink);
+      }
+    </script>
+  </div>
+
+
+    </div>
+  </div>
+</div></div>
+</div>
 </section>
 </section>
 
@@ -576,7 +821,6 @@
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#declarar-el-hardware">3. Declarar el hardware</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cargar-el-csv-completo">4. Cargar el CSV completo</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#revisar-loan-status">5. Revisar <code class="docutils literal notranslate"><span class="pre">loan_status</span></code></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#que-copiar-y-pegarme-en-el-chat">👉 Qué copiar y pegarme en el chat</a></li>
 </ul>
   </nav></div>
 

@@ -382,7 +382,6 @@
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#definicion-de-modelos-y-espacios-de-busqueda">4. Definición de modelos y espacios de búsqueda</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#entrenar-evaluar-y-guardar-con-puntos-de-control">5. Entrenar, evaluar y guardar (con puntos de control)</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#consolidar-resultados">6. Consolidar resultados</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#que-copiar-y-pegarme-en-el-chat">👉 Qué copiar y pegarme en el chat</a></li>
 </ul>
             </nav>
         </div>
@@ -410,6 +409,11 @@
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">google.colab</span><span class="w"> </span><span class="kn">import</span> <span class="n">drive</span>
 <span class="n">drive</span><span class="o">.</span><span class="n">mount</span><span class="p">(</span><span class="s1">'/content/drive'</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Drive already mounted at /content/drive; to attempt to forcibly remount, call drive.mount("/content/drive", force_remount=True).
 </pre></div>
 </div>
 </div>
@@ -442,6 +446,11 @@
 
 <span class="n">HW</span> <span class="o">=</span> <span class="p">{</span><span class="s1">'nucleos'</span><span class="p">:</span> <span class="n">os</span><span class="o">.</span><span class="n">cpu_count</span><span class="p">(),</span> <span class="s1">'ram_gb'</span><span class="p">:</span> <span class="nb">round</span><span class="p">(</span><span class="n">psutil</span><span class="o">.</span><span class="n">virtual_memory</span><span class="p">()</span><span class="o">.</span><span class="n">total</span> <span class="o">/</span> <span class="mf">1e9</span><span class="p">,</span> <span class="mi">1</span><span class="p">)}</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">'Hardware declarado:'</span><span class="p">,</span> <span class="n">HW</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Hardware declarado: {'nucleos': 8, 'ram_gb': 54.8}
 </pre></div>
 </div>
 </div>
@@ -482,6 +491,16 @@
 
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'Carga: </span><span class="si">{</span><span class="n">t_carga</span><span class="si">:</span><span class="s1">,.1f</span><span class="si">}</span><span class="s1"> s | filas: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span><span class="si">:</span><span class="s1">,</span><span class="si">}</span><span class="s1">'</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">'split'</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Archivo: /content/drive/MyDrive/ML_LendingClub/accepted_2007_to_2018q4.csv/accepted_2007_to_2018Q4.csv
+Carga: 20.8 s | filas: 1,345,310
+split
+train    1076248
+test      269062
+Name: count, dtype: int64
 </pre></div>
 </div>
 </div>
@@ -531,13 +550,20 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Preprocesamiento: 7.8 s
+X_train: (1076248, 91) | X_test: (269062, 91)
+Tasa de default  train: 19.963 %  |  test: 19.963 %
+</pre></div>
+</div>
+</div>
 </div>
 </section>
 <section id="definicion-de-modelos-y-espacios-de-busqueda">
 <h2>4. Definición de modelos y espacios de búsqueda<a class="headerlink" href="#definicion-de-modelos-y-espacios-de-busqueda" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p><strong>Regresión logística (regularización L2 por defecto) y LinearSVC:</strong> <code class="docutils literal notranslate"><span class="pre">C</span> <span class="pre">=</span> <span class="pre">1</span> <span class="pre">/</span> <span class="pre">(regParam</span> <span class="pre">×</span> <span class="pre">n)</span></code> con <code class="docutils literal notranslate"><span class="pre">regParam</span> <span class="pre">∈</span> <span class="pre">{1e-6,</span> <span class="pre">1e-5,</span> <span class="pre">1e-4}</span></code> y <code class="docutils literal notranslate"><span class="pre">n</span></code> = tamaño de train. Es una equivalencia aproximada con Spark (hay que decirlo en el informe).</p></li>
-<li><p><strong>LinearSVC</strong> usa <code class="docutils literal notranslate"><span class="pre">loss=&quot;squared_hinge&quot;</span></code> en forma primal (<code class="docutils literal notranslate"><span class="pre">dual=False</span></code>). Con <code class="docutils literal notranslate"><span class="pre">hinge</span></code> dual, liblinear convergía (94 iteraciones) a una solución degenerada (AUC 0.58 en submuestra; 0.515 con todos los datos; recall 0), mientras que <code class="docutils literal notranslate"><span class="pre">squared_hinge</span></code> primal da AUC 0.709 en segundos. Spark solo implementa <code class="docutils literal notranslate"><span class="pre">hinge</span></code>; esa diferencia se documenta en el informe.</p></li>
+<li><p><strong>LinearSVC</strong> se probó primero con <code class="docutils literal notranslate"><span class="pre">loss=&quot;hinge&quot;</span></code> para coincidir con la pérdida de Spark, pero esa configuración dio una solución degenerada (AUC 0.515). Tras el diagnóstico de la sección final, el modelo definitivo usa <code class="docutils literal notranslate"><span class="pre">loss=&quot;squared_hinge&quot;</span></code> con <code class="docutils literal notranslate"><span class="pre">dual=False</span></code> (AUC 0.709).</p></li>
 <li><p><strong>Gradient boosting:</strong> con <code class="docutils literal notranslate"><span class="pre">USAR_HIST=True</span></code> se usa <code class="docutils literal notranslate"><span class="pre">HistGradientBoostingClassifier</span></code>, sustitución que el enunciado permite si el costo es prohibitivo (hay que justificarla). Se desactiva <code class="docutils literal notranslate"><span class="pre">early_stopping</span></code> para que el número de iteraciones sea el de la rejilla, igual que <code class="docutils literal notranslate"><span class="pre">maxIter</span></code> en Spark.</p></li>
 <li><p><strong>Naive Bayes</strong> gaussiano, sin búsqueda de hiperparámetros.</p></li>
 </ul>
@@ -562,7 +588,7 @@
                            <span class="n">g</span><span class="p">({</span><span class="s1">'C'</span><span class="p">:</span> <span class="n">Cs</span><span class="p">},</span> <span class="p">{</span><span class="s1">'C'</span><span class="p">:</span> <span class="n">Cs</span><span class="p">[:</span><span class="mi">1</span><span class="p">]})),</span>
     <span class="s1">'DecisionTree'</span><span class="p">:</span>       <span class="p">(</span><span class="n">DecisionTreeClassifier</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="n">SEMILLA</span><span class="p">),</span>
                            <span class="n">g</span><span class="p">({</span><span class="s1">'max_depth'</span><span class="p">:</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">15</span><span class="p">]},</span> <span class="p">{</span><span class="s1">'max_depth'</span><span class="p">:</span> <span class="p">[</span><span class="mi">3</span><span class="p">]})),</span>
-    <span class="s1">'LinearSVC'</span><span class="p">:</span>          <span class="p">(</span><span class="n">LinearSVC</span><span class="p">(</span><span class="n">loss</span><span class="o">=</span><span class="s1">'squared_hinge'</span><span class="p">,</span> <span class="n">dual</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">max_iter</span><span class="o">=</span><span class="mi">2000</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="n">SEMILLA</span><span class="p">),</span>
+    <span class="s1">'LinearSVC'</span><span class="p">:</span>          <span class="p">(</span><span class="n">LinearSVC</span><span class="p">(</span><span class="n">loss</span><span class="o">=</span><span class="s1">'hinge'</span><span class="p">,</span> <span class="n">dual</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">max_iter</span><span class="o">=</span><span class="mi">2000</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="n">SEMILLA</span><span class="p">),</span>
                            <span class="n">g</span><span class="p">({</span><span class="s1">'C'</span><span class="p">:</span> <span class="n">Cs</span><span class="p">},</span> <span class="p">{</span><span class="s1">'C'</span><span class="p">:</span> <span class="n">Cs</span><span class="p">[:</span><span class="mi">1</span><span class="p">]})),</span>
     <span class="s1">'GradientBoosting'</span><span class="p">:</span>   <span class="p">(</span><span class="n">gb</span><span class="p">,</span> <span class="n">grid_gb</span><span class="p">),</span>
     <span class="s1">'RandomForest'</span><span class="p">:</span>       <span class="p">(</span><span class="n">RandomForestClassifier</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="n">SEMILLA</span><span class="p">),</span>
@@ -571,6 +597,12 @@
 <span class="p">}</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">'Valores de C (regParam 1e-6, 1e-5, 1e-4):'</span><span class="p">,</span> <span class="p">[</span><span class="nb">round</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">Cs</span><span class="p">])</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">'Modelos:'</span><span class="p">,</span> <span class="nb">list</span><span class="p">(</span><span class="n">MODELOS</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Valores de C (regParam 1e-6, 1e-5, 1e-4): [0.92915, 0.09292, 0.00929]
+Modelos: ['NaiveBayes', 'LogisticRegression', 'DecisionTree', 'LinearSVC', 'GradientBoosting', 'RandomForest']
 </pre></div>
 </div>
 </div>
@@ -642,6 +674,22 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[NaiveBayes] entrenando...
+[NaiveBayes] listo en 0.0 min | AUC=0.6293 | mejores={}
+[LogisticRegression] entrenando...
+[LogisticRegression] listo en 0.5 min | AUC=0.7096 | mejores={'C': 0.009291538753149831}
+[DecisionTree] entrenando...
+[DecisionTree] listo en 0.9 min | AUC=0.7019 | mejores={'max_depth': 10}
+[LinearSVC] entrenando...
+[LinearSVC] listo en 31.6 min | AUC=0.5152 | mejores={'C': 0.9291538753149833}
+[GradientBoosting] entrenando...
+[GradientBoosting] listo en 2.0 min | AUC=0.7179 | mejores={'max_depth': 5, 'max_iter': 100}
+[RandomForest] entrenando...
+[RandomForest] listo en 10.8 min | AUC=0.7143 | mejores={'max_depth': 15, 'n_estimators': 100}
+</pre></div>
+</div>
+</div>
 </div>
 </section>
 <section id="consolidar-resultados">
@@ -660,6 +708,209 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+  <div id="df-fc59dd25-fc44-4b6b-90fd-0adca3cc53a7" class="colab-df-container">
+    <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>auc</th>
+      <th>auc_cv</th>
+      <th>accuracy</th>
+      <th>precision</th>
+      <th>recall</th>
+      <th>f1</th>
+      <th>t_entrenamiento_s</th>
+      <th>t_prediccion_s</th>
+      <th>mejores_params</th>
+    </tr>
+    <tr>
+      <th>modelo</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>NaiveBayes</th>
+      <td>0.629350</td>
+      <td>NaN</td>
+      <td>0.579487</td>
+      <td>0.270519</td>
+      <td>0.652182</td>
+      <td>0.382415</td>
+      <td>0.5</td>
+      <td>0.29</td>
+      <td>{}</td>
+    </tr>
+    <tr>
+      <th>LogisticRegression</th>
+      <td>0.709610</td>
+      <td>0.708254</td>
+      <td>0.801496</td>
+      <td>0.518299</td>
+      <td>0.079628</td>
+      <td>0.138048</td>
+      <td>32.9</td>
+      <td>0.06</td>
+      <td>{'C': 0.009291538753149831}</td>
+    </tr>
+    <tr>
+      <th>DecisionTree</th>
+      <td>0.701928</td>
+      <td>0.695600</td>
+      <td>0.800581</td>
+      <td>0.503751</td>
+      <td>0.070003</td>
+      <td>0.122924</td>
+      <td>53.0</td>
+      <td>0.03</td>
+      <td>{'max_depth': 10}</td>
+    </tr>
+    <tr>
+      <th>LinearSVC</th>
+      <td>0.709246</td>
+      <td>0.707975</td>
+      <td>0.801696</td>
+      <td>0.549776</td>
+      <td>0.036603</td>
+      <td>0.068636</td>
+      <td>72.0</td>
+      <td>0.05</td>
+      <td>{'C': 0.09291538753149832}</td>
+    </tr>
+    <tr>
+      <th>GradientBoosting</th>
+      <td>0.717860</td>
+      <td>0.714420</td>
+      <td>0.803647</td>
+      <td>0.571359</td>
+      <td>0.065665</td>
+      <td>0.117792</td>
+      <td>117.4</td>
+      <td>1.79</td>
+      <td>{'max_depth': 5, 'max_iter': 100}</td>
+    </tr>
+    <tr>
+      <th>RandomForest</th>
+      <td>0.714277</td>
+      <td>0.711510</td>
+      <td>0.802005</td>
+      <td>0.613790</td>
+      <td>0.022043</td>
+      <td>0.042559</td>
+      <td>646.2</td>
+      <td>3.01</td>
+      <td>{'max_depth': 15, 'n_estimators': 100}</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+    <div class="colab-df-buttons">
+
+  <div class="colab-df-container">
+    <button class="colab-df-convert" onclick="convertToInteractive('df-fc59dd25-fc44-4b6b-90fd-0adca3cc53a7')"
+            title="Convert this dataframe to an interactive table."
+            style="display:none;">
+
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960">
+    <path d="M120-120v-720h720v720H120Zm60-500h600v-160H180v160Zm220 220h160v-160H400v160Zm0 220h160v-160H400v160ZM180-400h160v-160H180v160Zm440 0h160v-160H620v160ZM180-180h160v-160H180v160Zm440 0h160v-160H620v160Z"/>
+  </svg>
+    </button>
+
+  <style>
+    .colab-df-container {
+      display:flex;
+      gap: 12px;
+    }
+
+    .colab-df-convert {
+      background-color: #E8F0FE;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      fill: #1967D2;
+      height: 32px;
+      padding: 0 0 0 0;
+      width: 32px;
+    }
+
+    .colab-df-convert:hover {
+      background-color: #E2EBFA;
+      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+      fill: #174EA6;
+    }
+
+    .colab-df-buttons div {
+      margin-bottom: 4px;
+    }
+
+    [theme=dark] .colab-df-convert {
+      background-color: #3B4455;
+      fill: #D2E3FC;
+    }
+
+    [theme=dark] .colab-df-convert:hover {
+      background-color: #434B5C;
+      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+      fill: #FFFFFF;
+    }
+  </style>
+
+    <script>
+      const buttonEl =
+        document.querySelector('#df-fc59dd25-fc44-4b6b-90fd-0adca3cc53a7 button.colab-df-convert');
+      buttonEl.style.display =
+        google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+      async function convertToInteractive(key) {
+        const element = document.querySelector('#df-fc59dd25-fc44-4b6b-90fd-0adca3cc53a7');
+        const dataTable =
+          await google.colab.kernel.invokeFunction('convertToInteractive',
+                                                    [key], {});
+        if (!dataTable) return;
+
+        const docLinkHtml = 'Like what you see? Visit the ' +
+          '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
+          + ' to learn more about interactive tables.';
+        element.innerHTML = '';
+        dataTable['output_type'] = 'display_data';
+        await google.colab.output.renderOutput(dataTable, element);
+        const docLink = document.createElement('div');
+        docLink.innerHTML = docLinkHtml;
+        element.appendChild(docLink);
+      }
+    </script>
+  </div>
+
+
+    </div>
+  </div>
+</div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -677,15 +928,82 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Guardado: /content/drive/MyDrive/ML_LendingClub/scores_sklearn.parquet (269062, 8)
+Matrices de confusión (tn, fp, fn, tp):
+                        tn     fp     fn     tp
+modelo                                         
+NaiveBayes          120888  94462  18682  35030
+LogisticRegression  211375   3975  49435   4277
+DecisionTree        211646   3704  49952   3760
+LinearSVC           213740   1610  51746   1966
+GradientBoosting    212704   2646  50185   3527
+RandomForest        214605    745  52528   1184
+</pre></div>
 </div>
-</section>
-<section id="que-copiar-y-pegarme-en-el-chat">
-<h2>👉 Qué copiar y pegarme en el chat<a class="headerlink" href="#que-copiar-y-pegarme-en-el-chat" title="Link to this heading">#</a></h2>
-<ol class="arabic simple">
-<li><p>La salida de las secciones 2 y 3 (filas, tamaños de X, tasas de default).</p></li>
-<li><p>La tabla de resultados de la sección 6.</p></li>
-<li><p>Cualquier error, completo.</p></li>
-</ol>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">time</span><span class="o">,</span><span class="w"> </span><span class="nn">warnings</span><span class="o">,</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.svm</span><span class="w"> </span><span class="kn">import</span> <span class="n">LinearSVC</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="n">roc_auc_score</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.model_selection</span><span class="w"> </span><span class="kn">import</span> <span class="n">train_test_split</span>
+
+<span class="c1"># submuestra SOLO para diagnóstico (no es el modelo final)</span>
+<span class="n">Xs</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">ys</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">train_size</span><span class="o">=</span><span class="mi">200_000</span><span class="p">,</span>
+                                <span class="n">stratify</span><span class="o">=</span><span class="n">y_train</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">Xv</span><span class="p">,</span> <span class="n">ys_v</span> <span class="o">=</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span>   <span class="c1"># evaluación sobre el test completo</span>
+
+<span class="n">pruebas</span> <span class="o">=</span> <span class="p">{</span>
+ <span class="s1">'hinge dual  C=0.01 it=2000'</span><span class="p">:</span>  <span class="nb">dict</span><span class="p">(</span><span class="n">loss</span><span class="o">=</span><span class="s1">'hinge'</span><span class="p">,</span> <span class="n">dual</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>  <span class="n">C</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span> <span class="n">max_iter</span><span class="o">=</span><span class="mi">2000</span><span class="p">),</span>
+ <span class="s1">'hinge dual  C=0.01 it=20000'</span><span class="p">:</span> <span class="nb">dict</span><span class="p">(</span><span class="n">loss</span><span class="o">=</span><span class="s1">'hinge'</span><span class="p">,</span> <span class="n">dual</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>  <span class="n">C</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span> <span class="n">max_iter</span><span class="o">=</span><span class="mi">20000</span><span class="p">),</span>
+ <span class="s1">'sqhinge primal C=0.01'</span><span class="p">:</span>       <span class="nb">dict</span><span class="p">(</span><span class="n">loss</span><span class="o">=</span><span class="s1">'squared_hinge'</span><span class="p">,</span> <span class="n">dual</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">C</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span> <span class="n">max_iter</span><span class="o">=</span><span class="mi">2000</span><span class="p">),</span>
+ <span class="s1">'sqhinge primal C=0.001'</span><span class="p">:</span>      <span class="nb">dict</span><span class="p">(</span><span class="n">loss</span><span class="o">=</span><span class="s1">'squared_hinge'</span><span class="p">,</span> <span class="n">dual</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">C</span><span class="o">=</span><span class="mf">0.001</span><span class="p">,</span> <span class="n">max_iter</span><span class="o">=</span><span class="mi">2000</span><span class="p">),</span>
+<span class="p">}</span>
+<span class="k">for</span> <span class="n">nombre</span><span class="p">,</span> <span class="n">kw</span> <span class="ow">in</span> <span class="n">pruebas</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+    <span class="k">with</span> <span class="n">warnings</span><span class="o">.</span><span class="n">catch_warnings</span><span class="p">(</span><span class="n">record</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="k">as</span> <span class="n">w</span><span class="p">:</span>
+        <span class="n">warnings</span><span class="o">.</span><span class="n">simplefilter</span><span class="p">(</span><span class="s1">'always'</span><span class="p">)</span>
+        <span class="n">m</span> <span class="o">=</span> <span class="n">LinearSVC</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">Xs</span><span class="p">,</span> <span class="n">ys</span><span class="p">)</span>
+    <span class="n">auc</span> <span class="o">=</span> <span class="n">roc_auc_score</span><span class="p">(</span><span class="n">ys_v</span><span class="p">,</span> <span class="n">m</span><span class="o">.</span><span class="n">decision_function</span><span class="p">(</span><span class="n">Xv</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="n">nombre</span><span class="si">:</span><span class="s1">30s</span><span class="si">}</span><span class="s1"> AUC=</span><span class="si">{</span><span class="n">auc</span><span class="si">:</span><span class="s1">.4f</span><span class="si">}</span><span class="s1">  n_iter=</span><span class="si">{</span><span class="n">m</span><span class="o">.</span><span class="n">n_iter_</span><span class="si">}</span><span class="s1">  '</span>
+          <span class="sa">f</span><span class="s1">'warnings=</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">w</span><span class="p">)</span><span class="si">}</span><span class="s1">  </span><span class="si">{</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span><span class="o">-</span><span class="n">t</span><span class="si">:</span><span class="s1">.0f</span><span class="si">}</span><span class="s1">s'</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>hinge dual  C=0.01 it=2000     AUC=0.5778  n_iter=94  warnings=0  7s
+hinge dual  C=0.01 it=20000    AUC=0.5778  n_iter=94  warnings=1  7s
+sqhinge primal C=0.01          AUC=0.7088  n_iter=5  warnings=1  4s
+sqhinge primal C=0.001         AUC=0.7089  n_iter=5  warnings=1  2s
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">glob</span><span class="o">,</span><span class="w"> </span><span class="nn">os</span><span class="o">,</span><span class="w"> </span><span class="nn">shutil</span>
+<span class="c1"># 1) conservar la evidencia del SVM con hinge (no se borra)</span>
+<span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">DIR_RES</span> <span class="o">+</span> <span class="s1">'/_hinge_descartado'</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="n">DIR_RES</span><span class="si">}</span><span class="s1">/LinearSVC*'</span><span class="p">)</span> <span class="o">+</span> <span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="n">DIR_RES</span><span class="si">}</span><span class="s1">/scores_LinearSVC*'</span><span class="p">):</span>
+    <span class="n">shutil</span><span class="o">.</span><span class="n">move</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">DIR_RES</span> <span class="o">+</span> <span class="s1">'/_hinge_descartado/'</span><span class="p">)</span>
+
+<span class="c1"># 2) nuevo SVM (squared_hinge, primal) con la misma rejilla de C</span>
+<span class="n">MODELOS</span><span class="p">[</span><span class="s1">'LinearSVC'</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">LinearSVC</span><span class="p">(</span><span class="n">loss</span><span class="o">=</span><span class="s1">'squared_hinge'</span><span class="p">,</span> <span class="n">dual</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">max_iter</span><span class="o">=</span><span class="mi">2000</span><span class="p">,</span>
+                                  <span class="n">random_state</span><span class="o">=</span><span class="n">SEMILLA</span><span class="p">),</span>
+                        <span class="p">{</span><span class="s1">'C'</span><span class="p">:</span> <span class="n">Cs</span><span class="p">})</span>
+<span class="n">correr_modelo</span><span class="p">(</span><span class="s1">'LinearSVC'</span><span class="p">,</span> <span class="o">*</span><span class="n">MODELOS</span><span class="p">[</span><span class="s1">'LinearSVC'</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[LinearSVC] entrenando...
+[LinearSVC] listo en 1.2 min | AUC=0.7092 | mejores={'C': 0.09291538753149832}
+</pre></div>
+</div>
+</div>
+</div>
 </section>
 </section>
 
@@ -761,7 +1079,6 @@
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#definicion-de-modelos-y-espacios-de-busqueda">4. Definición de modelos y espacios de búsqueda</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#entrenar-evaluar-y-guardar-con-puntos-de-control">5. Entrenar, evaluar y guardar (con puntos de control)</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#consolidar-resultados">6. Consolidar resultados</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#que-copiar-y-pegarme-en-el-chat">👉 Qué copiar y pegarme en el chat</a></li>
 </ul>
   </nav></div>
 

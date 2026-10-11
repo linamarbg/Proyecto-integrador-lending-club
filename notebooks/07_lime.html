@@ -433,6 +433,11 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Drive already mounted at /content/drive; to attempt to forcibly remount, call drive.mount("/content/drive", force_remount=True).
+</pre></div>
+</div>
+</div>
 </div>
 <section id="seleccion-de-las-instancias-mal-clasificadas">
 <h2>Selección de las instancias mal clasificadas<a class="headerlink" href="#seleccion-de-las-instancias-mal-clasificadas" title="Link to this heading">#</a></h2>
@@ -456,6 +461,12 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>sklearn: {'falso_positivo': ('55961482', 0.7396300688734534), 'falso_negativo': ('36099806', 0.016184874981559374)}
+pyspark: {'falso_positivo': ('55961482', 0.870698852883864), 'falso_negativo': ('36099806', 0.023101965436578942)}
+</pre></div>
+</div>
+</div>
 </div>
 </section>
 <section id="parte-a-scikit-learn">
@@ -472,7 +483,6 @@
 <span class="n">archivo</span> <span class="o">=</span> <span class="n">candidatos</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">if</span> <span class="n">candidatos</span> <span class="k">else</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">f</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="n">RUTA</span> <span class="o">+</span> <span class="s1">'/*accepted*'</span><span class="p">)</span> <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">f</span><span class="p">))[</span><span class="mi">0</span><span class="p">]</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">archivo</span><span class="p">,</span> <span class="n">usecols</span><span class="o">=</span><span class="n">USECOLS</span><span class="p">,</span> <span class="n">low_memory</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">'loan_status'</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">([</span><span class="s1">'Fully Paid'</span><span class="p">,</span> <span class="s1">'Charged Off'</span><span class="p">])]</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">df</span><span class="p">[</span><span class="s1">'default'</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">'loan_status'</span><span class="p">]</span> <span class="o">==</span> <span class="s1">'Charged Off'</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
 <span class="n">df</span><span class="p">[</span><span class="s1">'id'</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">'id'</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
 <span class="n">part</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_parquet</span><span class="p">(</span><span class="n">RUTA</span> <span class="o">+</span> <span class="s1">'/split_80_20_seed42.parquet'</span><span class="p">);</span> <span class="n">part</span><span class="p">[</span><span class="s1">'id'</span><span class="p">]</span> <span class="o">=</span> <span class="n">part</span><span class="p">[</span><span class="s1">'id'</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
 <span class="n">df</span><span class="p">[</span><span class="s1">'split'</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">'id'</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">part</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">'id'</span><span class="p">)[</span><span class="s1">'split'</span><span class="p">])</span>
@@ -488,6 +498,18 @@
 <span class="n">fondo</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">'split'</span><span class="p">]</span> <span class="o">==</span> <span class="s1">'train'</span><span class="p">]</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">N_FONDO</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="n">SEMILLA</span><span class="p">)</span>
 <span class="n">X_fondo</span> <span class="o">=</span> <span class="n">pre</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">fondo</span><span class="p">[</span><span class="n">FEATURES</span><span class="p">])</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">'Fondo:'</span><span class="p">,</span> <span class="n">X_fondo</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="s1">'| modelo:'</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="n">modelo_sk</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fondo: (20000, 91) | modelo: HistGradientBoostingClassifier
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">'default'</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">'loan_status'</span><span class="p">]</span> <span class="o">==</span> <span class="s1">'Charged Off'</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -518,6 +540,12 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>falso_positivo: id=55961482 | prob. default modelo=0.740 | real=Pagado | explicación 0.1 s | R² local=0.530
+falso_negativo: id=36099806 | prob. default modelo=0.016 | real=Default | explicación 0.1 s | R² local=0.481
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -536,6 +564,34 @@
 <span class="n">graficar</span><span class="p">(</span><span class="n">resultados_sk</span><span class="p">,</span> <span class="s1">'LIME · GradientBoosting · scikit-learn'</span><span class="p">,</span> <span class="s1">'lime_sklearn.png'</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">tipo</span><span class="p">,</span> <span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">seg</span><span class="p">)</span> <span class="ow">in</span> <span class="n">resultados_sk</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
     <span class="nb">print</span><span class="p">(</span><span class="s1">'</span><span class="se">\n</span><span class="s1">'</span><span class="p">,</span> <span class="n">tipo</span><span class="p">);</span> <span class="p">[</span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'  </span><span class="si">{</span><span class="n">n</span><span class="si">:</span><span class="s1">55s</span><span class="si">}</span><span class="s1"> </span><span class="si">{</span><span class="n">w</span><span class="si">:</span><span class="s1">+.4f</span><span class="si">}</span><span class="s1">'</span><span class="p">)</span> <span class="k">for</span> <span class="n">n</span><span class="p">,</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">e</span><span class="o">.</span><span class="n">as_list</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="mi">1</span><span class="p">)]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/0ed3f44864b4691c0313e1dc12e4d1793c266b129dfabe404fa313d242aba8fa.png" src="../_images/0ed3f44864b4691c0313e1dc12e4d1793c266b129dfabe404fa313d242aba8fa.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> falso_positivo
+  num__int_rate &gt; 0.55                                    +0.1380
+  num__term_meses &gt; -0.56                                 +0.0895
+  cat__home_ownership_OTHER=0                             -0.0483
+  cat__purpose_small_business=0                           -0.0444
+  cat__addr_state_MS=0                                    -0.0430
+  cat__addr_state_WA=0                                    +0.0429
+  cat__purpose_wedding=0                                  +0.0413
+  num__fico_range_high &gt; 0.43                             -0.0361
+  num__loan_amnt &gt; 0.64                                   +0.0358
+  cat__home_ownership_ANY=0                               +0.0352
+
+ falso_negativo
+  num__int_rate &lt;= -0.73                                  -0.1319
+  num__term_meses &lt;= -0.56                                -0.0842
+  cat__purpose_small_business=0                           -0.0507
+  cat__addr_state_ND=0                                    +0.0383
+  num__fico_range_high &gt; 0.43                             -0.0353
+  cat__addr_state_CO=0                                    +0.0327
+  cat__addr_state_NH=0                                    +0.0325
+  num__dti &lt;= -0.56                                       -0.0301
+  cat__addr_state_ME=0                                    -0.0268
+  cat__home_ownership_OTHER=0                             +0.0211
 </pre></div>
 </div>
 </div>
@@ -559,6 +615,12 @@
         <span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="n">LimeTabularExplainer</span><span class="p">(</span><span class="n">X_fondo</span><span class="p">,</span> <span class="n">feature_names</span><span class="o">=</span><span class="n">NOMBRES</span><span class="p">,</span> <span class="n">class_names</span><span class="o">=</span><span class="p">[</span><span class="s1">'Pagado'</span><span class="p">,</span> <span class="s1">'Default'</span><span class="p">],</span>
                                        <span class="n">categorical_features</span><span class="o">=</span><span class="n">cat_idx</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">'classification'</span><span class="p">,</span> <span class="n">discretize_continuous</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="n">s</span><span class="p">))</span>
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="n">tipo</span><span class="si">}</span><span class="s1">: </span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s1">/5 variables principales comunes en las 3 semillas'</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>falso_positivo: 3/5 variables principales comunes en las 3 semillas
+falso_negativo: 3/5 variables principales comunes en las 3 semillas
 </pre></div>
 </div>
 </div>
@@ -636,6 +698,12 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fondo y 2 instancias traídos al driver en 14.8 s | fondo: (20000, 99)
+Aviso: 95 nombres vs 99 columnas; se usan nombres genéricos
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -666,6 +734,40 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>falso_positivo: P(default) guardada=0.8707 | recalculada=0.8707
+falso_negativo: P(default) guardada=0.0231 | recalculada=0.0231
+falso_positivo: id=55961482 | explicación 4.0 s | R² local=0.391
+falso_negativo: id=36099806 | explicación 4.2 s | R² local=0.472
+</pre></div>
+</div>
+<img alt="../_images/210a378c656985b5accf982191fe20c9f2debd7e6ed3b84470b4cbe9e82aea36.png" src="../_images/210a378c656985b5accf982191fe20c9f2debd7e6ed3b84470b4cbe9e82aea36.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> falso_positivo
+  x1 &gt; 0.49                                               +0.1363
+  x23 &lt;= 0.00                                             -0.0683
+  x76 &lt;= 0.00                                             -0.0625
+  x5 &gt; 0.43                                               -0.0614
+  x4 &lt;= -0.55                                             -0.0613
+  x68 &lt;= 0.00                                             -0.0473
+  x0 &gt; 0.64                                               +0.0413
+  x82 &lt;= 0.00                                             -0.0392
+  x28 &lt;= 0.00                                             +0.0382
+  x90 &lt;= 0.00                                             -0.0146
+
+ falso_negativo
+  x1 &lt;= -0.85                                             -0.1446
+  x4 &lt;= -0.55                                             -0.0616
+  x5 &gt; 0.43                                               -0.0612
+  x68 &lt;= 0.00                                             -0.0448
+  x23 &lt;= 0.00                                             -0.0424
+  x25 &lt;= 0.00                                             -0.0408
+  x34 &lt;= 0.00                                             -0.0369
+  x29 &lt;= 0.00                                             +0.0331
+  x85 &lt;= 0.00                                             -0.0316
+  x26 &lt;= 0.00                                             -0.0271
+</pre></div>
+</div>
+</div>
 </div>
 </section>
 <section id="comparacion-de-costos-y-resumen">
@@ -682,6 +784,153 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+  <div id="df-739e35d7-be18-4d9f-a093-aa5912897738" class="colab-df-container">
+    <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>entorno</th>
+      <th>instancia</th>
+      <th>P_default</th>
+      <th>segundos</th>
+      <th>R2_local</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>scikit-learn</td>
+      <td>falso_positivo</td>
+      <td>0.740</td>
+      <td>0.079</td>
+      <td>0.530</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>scikit-learn</td>
+      <td>falso_negativo</td>
+      <td>0.016</td>
+      <td>0.069</td>
+      <td>0.481</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>PySpark</td>
+      <td>falso_positivo</td>
+      <td>0.871</td>
+      <td>3.959</td>
+      <td>0.391</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>PySpark</td>
+      <td>falso_negativo</td>
+      <td>0.023</td>
+      <td>4.169</td>
+      <td>0.472</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+    <div class="colab-df-buttons">
+
+  <div class="colab-df-container">
+    <button class="colab-df-convert" onclick="convertToInteractive('df-739e35d7-be18-4d9f-a093-aa5912897738')"
+            title="Convert this dataframe to an interactive table."
+            style="display:none;">
+
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960">
+    <path d="M120-120v-720h720v720H120Zm60-500h600v-160H180v160Zm220 220h160v-160H400v160Zm0 220h160v-160H400v160ZM180-400h160v-160H180v160Zm440 0h160v-160H620v160ZM180-180h160v-160H180v160Zm440 0h160v-160H620v160Z"/>
+  </svg>
+    </button>
+
+  <style>
+    .colab-df-container {
+      display:flex;
+      gap: 12px;
+    }
+
+    .colab-df-convert {
+      background-color: #E8F0FE;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      fill: #1967D2;
+      height: 32px;
+      padding: 0 0 0 0;
+      width: 32px;
+    }
+
+    .colab-df-convert:hover {
+      background-color: #E2EBFA;
+      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+      fill: #174EA6;
+    }
+
+    .colab-df-buttons div {
+      margin-bottom: 4px;
+    }
+
+    [theme=dark] .colab-df-convert {
+      background-color: #3B4455;
+      fill: #D2E3FC;
+    }
+
+    [theme=dark] .colab-df-convert:hover {
+      background-color: #434B5C;
+      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+      fill: #FFFFFF;
+    }
+  </style>
+
+    <script>
+      const buttonEl =
+        document.querySelector('#df-739e35d7-be18-4d9f-a093-aa5912897738 button.colab-df-convert');
+      buttonEl.style.display =
+        google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+      async function convertToInteractive(key) {
+        const element = document.querySelector('#df-739e35d7-be18-4d9f-a093-aa5912897738');
+        const dataTable =
+          await google.colab.kernel.invokeFunction('convertToInteractive',
+                                                    [key], {});
+        if (!dataTable) return;
+
+        const docLinkHtml = 'Like what you see? Visit the ' +
+          '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
+          + ' to learn more about interactive tables.';
+        element.innerHTML = '';
+        dataTable['output_type'] = 'display_data';
+        await google.colab.output.renderOutput(dataTable, element);
+        const docLink = document.createElement('div');
+        docLink.innerHTML = docLinkHtml;
+        element.appendChild(docLink);
+      }
+    </script>
+  </div>
+
+
+    </div>
+  </div>
+</div></div>
 </div>
 </section>
 <section id="limitaciones-y-lectura-para-el-informe">

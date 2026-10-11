@@ -444,6 +444,11 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Mounted at /content/drive
+</pre></div>
+</div>
+</div>
 </div>
 </section>
 <section id="carga-y-alineacion-de-las-puntuaciones">
@@ -465,6 +470,12 @@
     <span class="n">S</span><span class="p">[(</span><span class="s1">'sklearn'</span><span class="p">,</span> <span class="n">m</span><span class="p">)]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">m</span> <span class="o">+</span> <span class="s1">'_sk'</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span>
     <span class="n">S</span><span class="p">[(</span><span class="s1">'pyspark'</span><span class="p">,</span> <span class="n">m</span><span class="p">)]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">m</span> <span class="o">+</span> <span class="s1">'_sp'</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">'Filas de prueba:'</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">y</span><span class="p">),</span> <span class="s1">'| tasa de default: </span><span class="si">%.3f</span><span class="s1"> </span><span class="si">%%</span><span class="s1">'</span> <span class="o">%</span> <span class="p">(</span><span class="mi">100</span> <span class="o">*</span> <span class="n">y</span><span class="o">.</span><span class="n">mean</span><span class="p">()))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>sklearn: (269062, 8) | pyspark: (269062, 8)
+Filas de prueba: 269062 | tasa de default: 19.963 %
 </pre></div>
 </div>
 </div>
@@ -532,6 +543,14 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Máx. dif. AUC (rápida vs ingenua): 1.1102230246251565e-16
+Máx. dif. covarianza            : 0.0
+DeLong 12 modelos, conjunto completo: 1.0 s
+Máx. dif. AUC vs roc_auc_score  : 1.1102230246251565e-16
+</pre></div>
+</div>
+</div>
 </div>
 </section>
 <section id="auc-con-ic-95">
@@ -567,6 +586,217 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+  <div id="df-ec92b3ed-8d9c-4685-b948-03a32d395512" class="colab-df-container">
+    <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>entorno</th>
+      <th>modelo</th>
+      <th>AUC</th>
+      <th>IC_inf</th>
+      <th>IC_sup</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>sklearn</td>
+      <td>NaiveBayes</td>
+      <td>0.6293</td>
+      <td>0.6267</td>
+      <td>0.6320</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>sklearn</td>
+      <td>LogisticRegression</td>
+      <td>0.7096</td>
+      <td>0.7072</td>
+      <td>0.7120</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>sklearn</td>
+      <td>DecisionTree</td>
+      <td>0.7019</td>
+      <td>0.6995</td>
+      <td>0.7043</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>sklearn</td>
+      <td>LinearSVC</td>
+      <td>0.7092</td>
+      <td>0.7069</td>
+      <td>0.7116</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>sklearn</td>
+      <td>GradientBoosting</td>
+      <td>0.7179</td>
+      <td>0.7155</td>
+      <td>0.7202</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>sklearn</td>
+      <td>RandomForest</td>
+      <td>0.7143</td>
+      <td>0.7119</td>
+      <td>0.7166</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>pyspark</td>
+      <td>NaiveBayes</td>
+      <td>0.6298</td>
+      <td>0.6272</td>
+      <td>0.6325</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>pyspark</td>
+      <td>LogisticRegression</td>
+      <td>0.7096</td>
+      <td>0.7073</td>
+      <td>0.7120</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>pyspark</td>
+      <td>DecisionTree</td>
+      <td>0.7007</td>
+      <td>0.6983</td>
+      <td>0.7031</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>pyspark</td>
+      <td>LinearSVC</td>
+      <td>0.6066</td>
+      <td>0.6038</td>
+      <td>0.6094</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>pyspark</td>
+      <td>GradientBoosting</td>
+      <td>0.7174</td>
+      <td>0.7151</td>
+      <td>0.7198</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>pyspark</td>
+      <td>RandomForest</td>
+      <td>0.7131</td>
+      <td>0.7107</td>
+      <td>0.7154</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+    <div class="colab-df-buttons">
+
+  <div class="colab-df-container">
+    <button class="colab-df-convert" onclick="convertToInteractive('df-ec92b3ed-8d9c-4685-b948-03a32d395512')"
+            title="Convert this dataframe to an interactive table."
+            style="display:none;">
+
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960">
+    <path d="M120-120v-720h720v720H120Zm60-500h600v-160H180v160Zm220 220h160v-160H400v160Zm0 220h160v-160H400v160ZM180-400h160v-160H180v160Zm440 0h160v-160H620v160ZM180-180h160v-160H180v160Zm440 0h160v-160H620v160Z"/>
+  </svg>
+    </button>
+
+  <style>
+    .colab-df-container {
+      display:flex;
+      gap: 12px;
+    }
+
+    .colab-df-convert {
+      background-color: #E8F0FE;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      fill: #1967D2;
+      height: 32px;
+      padding: 0 0 0 0;
+      width: 32px;
+    }
+
+    .colab-df-convert:hover {
+      background-color: #E2EBFA;
+      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+      fill: #174EA6;
+    }
+
+    .colab-df-buttons div {
+      margin-bottom: 4px;
+    }
+
+    [theme=dark] .colab-df-convert {
+      background-color: #3B4455;
+      fill: #D2E3FC;
+    }
+
+    [theme=dark] .colab-df-convert:hover {
+      background-color: #434B5C;
+      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+      fill: #FFFFFF;
+    }
+  </style>
+
+    <script>
+      const buttonEl =
+        document.querySelector('#df-ec92b3ed-8d9c-4685-b948-03a32d395512 button.colab-df-convert');
+      buttonEl.style.display =
+        google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+      async function convertToInteractive(key) {
+        const element = document.querySelector('#df-ec92b3ed-8d9c-4685-b948-03a32d395512');
+        const dataTable =
+          await google.colab.kernel.invokeFunction('convertToInteractive',
+                                                    [key], {});
+        if (!dataTable) return;
+
+        const docLinkHtml = 'Like what you see? Visit the ' +
+          '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
+          + ' to learn more about interactive tables.';
+        element.innerHTML = '';
+        dataTable['output_type'] = 'display_data';
+        await google.colab.output.renderOutput(dataTable, element);
+        const docLink = document.createElement('div');
+        docLink.innerHTML = docLinkHtml;
+        element.appendChild(docLink);
+      }
+    </script>
+  </div>
+
+
+    </div>
+  </div>
+</div></div>
 </div>
 </section>
 <section id="delong-entre-entornos-mismo-modelo-6-comparaciones">
@@ -586,6 +816,211 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+  <div id="df-c6d46c89-e274-46ec-98d6-d4fc4fedf3c6" class="colab-df-container">
+    <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>modelo</th>
+      <th>AUC_sklearn</th>
+      <th>AUC_pyspark</th>
+      <th>dAUC</th>
+      <th>IC_inf</th>
+      <th>IC_sup</th>
+      <th>z</th>
+      <th>p</th>
+      <th>p_holm</th>
+      <th>signif</th>
+      <th>relevante</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>NaiveBayes</td>
+      <td>0.6293</td>
+      <td>0.6298</td>
+      <td>-0.0005</td>
+      <td>-0.0006</td>
+      <td>-0.0004</td>
+      <td>-11.7962</td>
+      <td>0.0000</td>
+      <td>0.0000</td>
+      <td>True</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>LogisticRegression</td>
+      <td>0.7096</td>
+      <td>0.7096</td>
+      <td>-0.0000</td>
+      <td>-0.0001</td>
+      <td>0.0000</td>
+      <td>-1.3950</td>
+      <td>0.1630</td>
+      <td>0.1630</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>DecisionTree</td>
+      <td>0.7019</td>
+      <td>0.7007</td>
+      <td>0.0012</td>
+      <td>0.0003</td>
+      <td>0.0021</td>
+      <td>2.6429</td>
+      <td>0.0082</td>
+      <td>0.0247</td>
+      <td>True</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>LinearSVC</td>
+      <td>0.7092</td>
+      <td>0.6066</td>
+      <td>0.1027</td>
+      <td>0.0998</td>
+      <td>0.1055</td>
+      <td>70.4934</td>
+      <td>0.0000</td>
+      <td>0.0000</td>
+      <td>True</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>GradientBoosting</td>
+      <td>0.7179</td>
+      <td>0.7174</td>
+      <td>0.0004</td>
+      <td>0.0000</td>
+      <td>0.0008</td>
+      <td>2.0720</td>
+      <td>0.0383</td>
+      <td>0.0765</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>RandomForest</td>
+      <td>0.7143</td>
+      <td>0.7131</td>
+      <td>0.0012</td>
+      <td>0.0008</td>
+      <td>0.0016</td>
+      <td>6.1735</td>
+      <td>0.0000</td>
+      <td>0.0000</td>
+      <td>True</td>
+      <td>False</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+    <div class="colab-df-buttons">
+
+  <div class="colab-df-container">
+    <button class="colab-df-convert" onclick="convertToInteractive('df-c6d46c89-e274-46ec-98d6-d4fc4fedf3c6')"
+            title="Convert this dataframe to an interactive table."
+            style="display:none;">
+
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960">
+    <path d="M120-120v-720h720v720H120Zm60-500h600v-160H180v160Zm220 220h160v-160H400v160Zm0 220h160v-160H400v160ZM180-400h160v-160H180v160Zm440 0h160v-160H620v160ZM180-180h160v-160H180v160Zm440 0h160v-160H620v160Z"/>
+  </svg>
+    </button>
+
+  <style>
+    .colab-df-container {
+      display:flex;
+      gap: 12px;
+    }
+
+    .colab-df-convert {
+      background-color: #E8F0FE;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      fill: #1967D2;
+      height: 32px;
+      padding: 0 0 0 0;
+      width: 32px;
+    }
+
+    .colab-df-convert:hover {
+      background-color: #E2EBFA;
+      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+      fill: #174EA6;
+    }
+
+    .colab-df-buttons div {
+      margin-bottom: 4px;
+    }
+
+    [theme=dark] .colab-df-convert {
+      background-color: #3B4455;
+      fill: #D2E3FC;
+    }
+
+    [theme=dark] .colab-df-convert:hover {
+      background-color: #434B5C;
+      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+      fill: #FFFFFF;
+    }
+  </style>
+
+    <script>
+      const buttonEl =
+        document.querySelector('#df-c6d46c89-e274-46ec-98d6-d4fc4fedf3c6 button.colab-df-convert');
+      buttonEl.style.display =
+        google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+      async function convertToInteractive(key) {
+        const element = document.querySelector('#df-c6d46c89-e274-46ec-98d6-d4fc4fedf3c6');
+        const dataTable =
+          await google.colab.kernel.invokeFunction('convertToInteractive',
+                                                    [key], {});
+        if (!dataTable) return;
+
+        const docLinkHtml = 'Like what you see? Visit the ' +
+          '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
+          + ' to learn more about interactive tables.';
+        element.innerHTML = '';
+        dataTable['output_type'] = 'display_data';
+        await google.colab.output.renderOutput(dataTable, element);
+        const docLink = document.createElement('div');
+        docLink.innerHTML = docLinkHtml;
+        element.appendChild(docLink);
+      }
+    </script>
+  </div>
+
+
+    </div>
+  </div>
+</div></div>
 </div>
 </section>
 <section id="delong-entre-modelos-dentro-de-cada-entorno-15-pares-por-entorno">
@@ -608,6 +1043,357 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--- sklearn: 15/15 significativos tras Holm, 12/15 también relevantes
+--- pyspark: 15/15 significativos tras Holm, 13/15 también relevantes
+</pre></div>
+</div>
+<div class="output text_html">
+  <div id="df-70a90a9f-8432-4626-9f07-482762eddfd8" class="colab-df-container">
+    <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>A</th>
+      <th>B</th>
+      <th>AUC_A</th>
+      <th>AUC_B</th>
+      <th>dAUC</th>
+      <th>IC_inf</th>
+      <th>IC_sup</th>
+      <th>z</th>
+      <th>p</th>
+      <th>p_holm</th>
+      <th>signif</th>
+      <th>relevante</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>NaiveBayes</td>
+      <td>LogisticRegression</td>
+      <td>0.6293</td>
+      <td>0.7096</td>
+      <td>-0.0803</td>
+      <td>-0.0826</td>
+      <td>-0.0779</td>
+      <td>-67.8034</td>
+      <td>0.0000</td>
+      <td>0.0000</td>
+      <td>True</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>NaiveBayes</td>
+      <td>DecisionTree</td>
+      <td>0.6293</td>
+      <td>0.7019</td>
+      <td>-0.0726</td>
+      <td>-0.0753</td>
+      <td>-0.0698</td>
+      <td>-51.5022</td>
+      <td>0.0000</td>
+      <td>0.0000</td>
+      <td>True</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>NaiveBayes</td>
+      <td>LinearSVC</td>
+      <td>0.6293</td>
+      <td>0.7092</td>
+      <td>-0.0799</td>
+      <td>-0.0822</td>
+      <td>-0.0776</td>
+      <td>-66.9085</td>
+      <td>0.0000</td>
+      <td>0.0000</td>
+      <td>True</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>NaiveBayes</td>
+      <td>GradientBoosting</td>
+      <td>0.6293</td>
+      <td>0.7179</td>
+      <td>-0.0885</td>
+      <td>-0.0911</td>
+      <td>-0.0860</td>
+      <td>-68.0765</td>
+      <td>0.0000</td>
+      <td>0.0000</td>
+      <td>True</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>NaiveBayes</td>
+      <td>RandomForest</td>
+      <td>0.6293</td>
+      <td>0.7143</td>
+      <td>-0.0849</td>
+      <td>-0.0875</td>
+      <td>-0.0823</td>
+      <td>-63.8094</td>
+      <td>0.0000</td>
+      <td>0.0000</td>
+      <td>True</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>LogisticRegression</td>
+      <td>DecisionTree</td>
+      <td>0.7096</td>
+      <td>0.7019</td>
+      <td>0.0077</td>
+      <td>0.0065</td>
+      <td>0.0089</td>
+      <td>12.2990</td>
+      <td>0.0000</td>
+      <td>0.0000</td>
+      <td>True</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>LogisticRegression</td>
+      <td>LinearSVC</td>
+      <td>0.7096</td>
+      <td>0.7092</td>
+      <td>0.0004</td>
+      <td>0.0001</td>
+      <td>0.0007</td>
+      <td>2.3114</td>
+      <td>0.0208</td>
+      <td>0.0208</td>
+      <td>True</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>LogisticRegression</td>
+      <td>GradientBoosting</td>
+      <td>0.7096</td>
+      <td>0.7179</td>
+      <td>-0.0083</td>
+      <td>-0.0091</td>
+      <td>-0.0074</td>
+      <td>-20.1774</td>
+      <td>0.0000</td>
+      <td>0.0000</td>
+      <td>True</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>LogisticRegression</td>
+      <td>RandomForest</td>
+      <td>0.7096</td>
+      <td>0.7143</td>
+      <td>-0.0047</td>
+      <td>-0.0055</td>
+      <td>-0.0038</td>
+      <td>-10.9827</td>
+      <td>0.0000</td>
+      <td>0.0000</td>
+      <td>True</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>DecisionTree</td>
+      <td>LinearSVC</td>
+      <td>0.7019</td>
+      <td>0.7092</td>
+      <td>-0.0073</td>
+      <td>-0.0085</td>
+      <td>-0.0061</td>
+      <td>-12.1200</td>
+      <td>0.0000</td>
+      <td>0.0000</td>
+      <td>True</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>DecisionTree</td>
+      <td>GradientBoosting</td>
+      <td>0.7019</td>
+      <td>0.7179</td>
+      <td>-0.0159</td>
+      <td>-0.0169</td>
+      <td>-0.0150</td>
+      <td>-32.5026</td>
+      <td>0.0000</td>
+      <td>0.0000</td>
+      <td>True</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>DecisionTree</td>
+      <td>RandomForest</td>
+      <td>0.7019</td>
+      <td>0.7143</td>
+      <td>-0.0123</td>
+      <td>-0.0133</td>
+      <td>-0.0114</td>
+      <td>-24.9225</td>
+      <td>0.0000</td>
+      <td>0.0000</td>
+      <td>True</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>LinearSVC</td>
+      <td>GradientBoosting</td>
+      <td>0.7092</td>
+      <td>0.7179</td>
+      <td>-0.0086</td>
+      <td>-0.0094</td>
+      <td>-0.0078</td>
+      <td>-21.5599</td>
+      <td>0.0000</td>
+      <td>0.0000</td>
+      <td>True</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>LinearSVC</td>
+      <td>RandomForest</td>
+      <td>0.7092</td>
+      <td>0.7143</td>
+      <td>-0.0050</td>
+      <td>-0.0058</td>
+      <td>-0.0042</td>
+      <td>-12.2975</td>
+      <td>0.0000</td>
+      <td>0.0000</td>
+      <td>True</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>GradientBoosting</td>
+      <td>RandomForest</td>
+      <td>0.7179</td>
+      <td>0.7143</td>
+      <td>0.0036</td>
+      <td>0.0030</td>
+      <td>0.0042</td>
+      <td>12.3252</td>
+      <td>0.0000</td>
+      <td>0.0000</td>
+      <td>True</td>
+      <td>False</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+    <div class="colab-df-buttons">
+
+  <div class="colab-df-container">
+    <button class="colab-df-convert" onclick="convertToInteractive('df-70a90a9f-8432-4626-9f07-482762eddfd8')"
+            title="Convert this dataframe to an interactive table."
+            style="display:none;">
+
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960">
+    <path d="M120-120v-720h720v720H120Zm60-500h600v-160H180v160Zm220 220h160v-160H400v160Zm0 220h160v-160H400v160ZM180-400h160v-160H180v160Zm440 0h160v-160H620v160ZM180-180h160v-160H180v160Zm440 0h160v-160H620v160Z"/>
+  </svg>
+    </button>
+
+  <style>
+    .colab-df-container {
+      display:flex;
+      gap: 12px;
+    }
+
+    .colab-df-convert {
+      background-color: #E8F0FE;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      fill: #1967D2;
+      height: 32px;
+      padding: 0 0 0 0;
+      width: 32px;
+    }
+
+    .colab-df-convert:hover {
+      background-color: #E2EBFA;
+      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+      fill: #174EA6;
+    }
+
+    .colab-df-buttons div {
+      margin-bottom: 4px;
+    }
+
+    [theme=dark] .colab-df-convert {
+      background-color: #3B4455;
+      fill: #D2E3FC;
+    }
+
+    [theme=dark] .colab-df-convert:hover {
+      background-color: #434B5C;
+      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+      fill: #FFFFFF;
+    }
+  </style>
+
+    <script>
+      const buttonEl =
+        document.querySelector('#df-70a90a9f-8432-4626-9f07-482762eddfd8 button.colab-df-convert');
+      buttonEl.style.display =
+        google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+      async function convertToInteractive(key) {
+        const element = document.querySelector('#df-70a90a9f-8432-4626-9f07-482762eddfd8');
+        const dataTable =
+          await google.colab.kernel.invokeFunction('convertToInteractive',
+                                                    [key], {});
+        if (!dataTable) return;
+
+        const docLinkHtml = 'Like what you see? Visit the ' +
+          '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
+          + ' to learn more about interactive tables.';
+        element.innerHTML = '';
+        dataTable['output_type'] = 'display_data';
+        await google.colab.output.renderOutput(dataTable, element);
+        const docLink = document.createElement('div');
+        docLink.innerHTML = docLinkHtml;
+        element.appendChild(docLink);
+      }
+    </script>
+  </div>
+
+
+    </div>
+  </div>
+</div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -615,6 +1401,353 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+  <div id="df-07c02dd2-4a7e-4038-9ca1-ab62b5455e5e" class="colab-df-container">
+    <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>A</th>
+      <th>B</th>
+      <th>AUC_A</th>
+      <th>AUC_B</th>
+      <th>dAUC</th>
+      <th>IC_inf</th>
+      <th>IC_sup</th>
+      <th>z</th>
+      <th>p</th>
+      <th>p_holm</th>
+      <th>signif</th>
+      <th>relevante</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>NaiveBayes</td>
+      <td>LogisticRegression</td>
+      <td>0.6298</td>
+      <td>0.7096</td>
+      <td>-0.0798</td>
+      <td>-0.0821</td>
+      <td>-0.0775</td>
+      <td>-67.5790</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>True</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>NaiveBayes</td>
+      <td>DecisionTree</td>
+      <td>0.6298</td>
+      <td>0.7007</td>
+      <td>-0.0709</td>
+      <td>-0.0737</td>
+      <td>-0.0681</td>
+      <td>-50.3323</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>True</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>NaiveBayes</td>
+      <td>LinearSVC</td>
+      <td>0.6298</td>
+      <td>0.6066</td>
+      <td>0.0232</td>
+      <td>0.0199</td>
+      <td>0.0266</td>
+      <td>13.6392</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>True</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>NaiveBayes</td>
+      <td>GradientBoosting</td>
+      <td>0.6298</td>
+      <td>0.7174</td>
+      <td>-0.0876</td>
+      <td>-0.0901</td>
+      <td>-0.0851</td>
+      <td>-67.5787</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>True</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>NaiveBayes</td>
+      <td>RandomForest</td>
+      <td>0.6298</td>
+      <td>0.7131</td>
+      <td>-0.0832</td>
+      <td>-0.0858</td>
+      <td>-0.0806</td>
+      <td>-62.5093</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>True</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>LogisticRegression</td>
+      <td>DecisionTree</td>
+      <td>0.7096</td>
+      <td>0.7007</td>
+      <td>0.0089</td>
+      <td>0.0077</td>
+      <td>0.0101</td>
+      <td>14.7194</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>True</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>LogisticRegression</td>
+      <td>LinearSVC</td>
+      <td>0.7096</td>
+      <td>0.6066</td>
+      <td>0.1030</td>
+      <td>0.1002</td>
+      <td>0.1059</td>
+      <td>69.9154</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>True</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>LogisticRegression</td>
+      <td>GradientBoosting</td>
+      <td>0.7096</td>
+      <td>0.7174</td>
+      <td>-0.0078</td>
+      <td>-0.0086</td>
+      <td>-0.0069</td>
+      <td>-17.9529</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>True</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>LogisticRegression</td>
+      <td>RandomForest</td>
+      <td>0.7096</td>
+      <td>0.7131</td>
+      <td>-0.0034</td>
+      <td>-0.0043</td>
+      <td>-0.0026</td>
+      <td>-8.0478</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>True</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>DecisionTree</td>
+      <td>LinearSVC</td>
+      <td>0.7007</td>
+      <td>0.6066</td>
+      <td>0.0942</td>
+      <td>0.0912</td>
+      <td>0.0971</td>
+      <td>62.1910</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>True</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>DecisionTree</td>
+      <td>GradientBoosting</td>
+      <td>0.7007</td>
+      <td>0.7174</td>
+      <td>-0.0167</td>
+      <td>-0.0176</td>
+      <td>-0.0157</td>
+      <td>-34.3841</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>True</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>DecisionTree</td>
+      <td>RandomForest</td>
+      <td>0.7007</td>
+      <td>0.7131</td>
+      <td>-0.0123</td>
+      <td>-0.0133</td>
+      <td>-0.0114</td>
+      <td>-26.0888</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>True</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>LinearSVC</td>
+      <td>GradientBoosting</td>
+      <td>0.6066</td>
+      <td>0.7174</td>
+      <td>-0.1108</td>
+      <td>-0.1137</td>
+      <td>-0.1080</td>
+      <td>-75.4337</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>True</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>LinearSVC</td>
+      <td>RandomForest</td>
+      <td>0.6066</td>
+      <td>0.7131</td>
+      <td>-0.1065</td>
+      <td>-0.1094</td>
+      <td>-0.1036</td>
+      <td>-71.9406</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>True</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>GradientBoosting</td>
+      <td>RandomForest</td>
+      <td>0.7174</td>
+      <td>0.7131</td>
+      <td>0.0044</td>
+      <td>0.0037</td>
+      <td>0.0050</td>
+      <td>12.9362</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>True</td>
+      <td>False</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+    <div class="colab-df-buttons">
+
+  <div class="colab-df-container">
+    <button class="colab-df-convert" onclick="convertToInteractive('df-07c02dd2-4a7e-4038-9ca1-ab62b5455e5e')"
+            title="Convert this dataframe to an interactive table."
+            style="display:none;">
+
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960">
+    <path d="M120-120v-720h720v720H120Zm60-500h600v-160H180v160Zm220 220h160v-160H400v160Zm0 220h160v-160H400v160ZM180-400h160v-160H180v160Zm440 0h160v-160H620v160ZM180-180h160v-160H180v160Zm440 0h160v-160H620v160Z"/>
+  </svg>
+    </button>
+
+  <style>
+    .colab-df-container {
+      display:flex;
+      gap: 12px;
+    }
+
+    .colab-df-convert {
+      background-color: #E8F0FE;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      fill: #1967D2;
+      height: 32px;
+      padding: 0 0 0 0;
+      width: 32px;
+    }
+
+    .colab-df-convert:hover {
+      background-color: #E2EBFA;
+      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+      fill: #174EA6;
+    }
+
+    .colab-df-buttons div {
+      margin-bottom: 4px;
+    }
+
+    [theme=dark] .colab-df-convert {
+      background-color: #3B4455;
+      fill: #D2E3FC;
+    }
+
+    [theme=dark] .colab-df-convert:hover {
+      background-color: #434B5C;
+      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+      fill: #FFFFFF;
+    }
+  </style>
+
+    <script>
+      const buttonEl =
+        document.querySelector('#df-07c02dd2-4a7e-4038-9ca1-ab62b5455e5e button.colab-df-convert');
+      buttonEl.style.display =
+        google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+      async function convertToInteractive(key) {
+        const element = document.querySelector('#df-07c02dd2-4a7e-4038-9ca1-ab62b5455e5e');
+        const dataTable =
+          await google.colab.kernel.invokeFunction('convertToInteractive',
+                                                    [key], {});
+        if (!dataTable) return;
+
+        const docLinkHtml = 'Like what you see? Visit the ' +
+          '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
+          + ' to learn more about interactive tables.';
+        element.innerHTML = '';
+        dataTable['output_type'] = 'display_data';
+        await google.colab.output.renderOutput(dataTable, element);
+        const docLink = document.createElement('div');
+        docLink.innerHTML = docLinkHtml;
+        element.appendChild(docLink);
+      }
+    </script>
+  </div>
+
+
+    </div>
+  </div>
+</div></div>
 </div>
 </section>
 <section id="mapas-de-calor-auc-y-p-ajustado-de-holm">
@@ -646,6 +1779,9 @@
 <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">();</span> <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">DIR_OUT</span> <span class="o">+</span> <span class="s1">'/heatmaps_delong.png'</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">150</span><span class="p">);</span> <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/6732ef13465e30e9847a362d7d4fc7efddb5de1820739b6c7c923fc542963a41.png" src="../_images/6732ef13465e30e9847a362d7d4fc7efddb5de1820739b6c7c923fc542963a41.png" />
 </div>
 </div>
 </section>
@@ -732,6 +1868,13 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Top-2 sklearn: ['GradientBoosting', 'RandomForest'] [np.float64(0.7179), np.float64(0.7143)]
+Top-2 pyspark: ['GradientBoosting', 'RandomForest'] [np.float64(0.7174), np.float64(0.7131)]
+Bootstrap (B=2000, 12 modelos): 3.0 min
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -766,6 +1909,282 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+  <div id="df-29a7b67f-fdbb-4030-b84d-a434aff52848" class="colab-df-container">
+    <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>familia</th>
+      <th>comparacion</th>
+      <th>McNemar_b</th>
+      <th>McNemar_c</th>
+      <th>McNemar_p</th>
+      <th>McNemar_prueba</th>
+      <th>dAUC</th>
+      <th>dAUC_IC_inf</th>
+      <th>dAUC_IC_sup</th>
+      <th>dAUC_p</th>
+      <th>...</th>
+      <th>dF1_IC_inf</th>
+      <th>dF1_IC_sup</th>
+      <th>dF1_p</th>
+      <th>DeLong_dAUC</th>
+      <th>DeLong_p</th>
+      <th>McNemar_p_holm</th>
+      <th>dAUC_p_holm</th>
+      <th>dAUCPR_p_holm</th>
+      <th>dF1_p_holm</th>
+      <th>DeLong_p_holm</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>entre entornos</td>
+      <td>NaiveBayes: sklearn vs PySpark</td>
+      <td>2303</td>
+      <td>918</td>
+      <td>0.0000</td>
+      <td>chi2 con corrección</td>
+      <td>-0.0005</td>
+      <td>-0.0006</td>
+      <td>-0.0004</td>
+      <td>0.0005</td>
+      <td>...</td>
+      <td>-0.0004</td>
+      <td>0.0005</td>
+      <td>0.8735</td>
+      <td>-0.0005</td>
+      <td>0.0000</td>
+      <td>0.0000</td>
+      <td>0.0030</td>
+      <td>0.0030</td>
+      <td>1.0000</td>
+      <td>0.0000</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>entre entornos</td>
+      <td>LogisticRegression: sklearn vs PySpark</td>
+      <td>65</td>
+      <td>52</td>
+      <td>0.2673</td>
+      <td>chi2 con corrección</td>
+      <td>-0.0000</td>
+      <td>-0.0000</td>
+      <td>0.0000</td>
+      <td>0.1785</td>
+      <td>...</td>
+      <td>-0.0001</td>
+      <td>0.0007</td>
+      <td>0.1095</td>
+      <td>-0.0000</td>
+      <td>0.1630</td>
+      <td>0.8018</td>
+      <td>0.1785</td>
+      <td>0.1395</td>
+      <td>0.3285</td>
+      <td>0.1630</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>entre entornos</td>
+      <td>DecisionTree: sklearn vs PySpark</td>
+      <td>2809</td>
+      <td>2982</td>
+      <td>0.0238</td>
+      <td>chi2 con corrección</td>
+      <td>0.0012</td>
+      <td>0.0003</td>
+      <td>0.0021</td>
+      <td>0.0055</td>
+      <td>...</td>
+      <td>-0.0041</td>
+      <td>0.0023</td>
+      <td>0.6085</td>
+      <td>0.0012</td>
+      <td>0.0082</td>
+      <td>0.0952</td>
+      <td>0.0165</td>
+      <td>0.3585</td>
+      <td>1.0000</td>
+      <td>0.0247</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>entre entornos</td>
+      <td>LinearSVC: sklearn vs PySpark</td>
+      <td>1966</td>
+      <td>1610</td>
+      <td>0.0000</td>
+      <td>chi2 con corrección</td>
+      <td>0.1027</td>
+      <td>0.0998</td>
+      <td>0.1056</td>
+      <td>0.0005</td>
+      <td>...</td>
+      <td>0.0658</td>
+      <td>0.0714</td>
+      <td>0.0005</td>
+      <td>0.1027</td>
+      <td>0.0000</td>
+      <td>0.0000</td>
+      <td>0.0030</td>
+      <td>0.0030</td>
+      <td>0.0030</td>
+      <td>0.0000</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>entre entornos</td>
+      <td>GradientBoosting: sklearn vs PySpark</td>
+      <td>1571</td>
+      <td>1533</td>
+      <td>0.5066</td>
+      <td>chi2 con corrección</td>
+      <td>0.0004</td>
+      <td>0.0000</td>
+      <td>0.0008</td>
+      <td>0.0355</td>
+      <td>...</td>
+      <td>-0.0273</td>
+      <td>-0.0228</td>
+      <td>0.0005</td>
+      <td>0.0004</td>
+      <td>0.0383</td>
+      <td>1.0000</td>
+      <td>0.0710</td>
+      <td>0.1710</td>
+      <td>0.0030</td>
+      <td>0.0765</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>entre entornos</td>
+      <td>RandomForest: sklearn vs PySpark</td>
+      <td>437</td>
+      <td>423</td>
+      <td>0.6576</td>
+      <td>chi2 con corrección</td>
+      <td>0.0012</td>
+      <td>0.0008</td>
+      <td>0.0016</td>
+      <td>0.0005</td>
+      <td>...</td>
+      <td>0.0029</td>
+      <td>0.0059</td>
+      <td>0.0005</td>
+      <td>0.0012</td>
+      <td>0.0000</td>
+      <td>1.0000</td>
+      <td>0.0030</td>
+      <td>0.0030</td>
+      <td>0.0030</td>
+      <td>0.0000</td>
+    </tr>
+  </tbody>
+</table>
+<p>6 rows × 25 columns</p>
+</div>
+    <div class="colab-df-buttons">
+
+  <div class="colab-df-container">
+    <button class="colab-df-convert" onclick="convertToInteractive('df-29a7b67f-fdbb-4030-b84d-a434aff52848')"
+            title="Convert this dataframe to an interactive table."
+            style="display:none;">
+
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960">
+    <path d="M120-120v-720h720v720H120Zm60-500h600v-160H180v160Zm220 220h160v-160H400v160Zm0 220h160v-160H400v160ZM180-400h160v-160H180v160Zm440 0h160v-160H620v160ZM180-180h160v-160H180v160Zm440 0h160v-160H620v160Z"/>
+  </svg>
+    </button>
+
+  <style>
+    .colab-df-container {
+      display:flex;
+      gap: 12px;
+    }
+
+    .colab-df-convert {
+      background-color: #E8F0FE;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      fill: #1967D2;
+      height: 32px;
+      padding: 0 0 0 0;
+      width: 32px;
+    }
+
+    .colab-df-convert:hover {
+      background-color: #E2EBFA;
+      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+      fill: #174EA6;
+    }
+
+    .colab-df-buttons div {
+      margin-bottom: 4px;
+    }
+
+    [theme=dark] .colab-df-convert {
+      background-color: #3B4455;
+      fill: #D2E3FC;
+    }
+
+    [theme=dark] .colab-df-convert:hover {
+      background-color: #434B5C;
+      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+      fill: #FFFFFF;
+    }
+  </style>
+
+    <script>
+      const buttonEl =
+        document.querySelector('#df-29a7b67f-fdbb-4030-b84d-a434aff52848 button.colab-df-convert');
+      buttonEl.style.display =
+        google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+      async function convertToInteractive(key) {
+        const element = document.querySelector('#df-29a7b67f-fdbb-4030-b84d-a434aff52848');
+        const dataTable =
+          await google.colab.kernel.invokeFunction('convertToInteractive',
+                                                    [key], {});
+        if (!dataTable) return;
+
+        const docLinkHtml = 'Like what you see? Visit the ' +
+          '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
+          + ' to learn more about interactive tables.';
+        element.innerHTML = '';
+        dataTable['output_type'] = 'display_data';
+        await google.colab.output.renderOutput(dataTable, element);
+        const docLink = document.createElement('div');
+        docLink.innerHTML = docLinkHtml;
+        element.appendChild(docLink);
+      }
+    </script>
+  </div>
+
+
+    </div>
+  </div>
+</div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -773,6 +2192,186 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+  <div id="df-ed57ceab-bba0-4c70-9720-5bb0a6846c01" class="colab-df-container">
+    <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>familia</th>
+      <th>comparacion</th>
+      <th>McNemar_b</th>
+      <th>McNemar_c</th>
+      <th>McNemar_p</th>
+      <th>McNemar_prueba</th>
+      <th>dAUC</th>
+      <th>dAUC_IC_inf</th>
+      <th>dAUC_IC_sup</th>
+      <th>dAUC_p</th>
+      <th>...</th>
+      <th>dF1_IC_inf</th>
+      <th>dF1_IC_sup</th>
+      <th>dF1_p</th>
+      <th>DeLong_dAUC</th>
+      <th>DeLong_p</th>
+      <th>McNemar_p_holm</th>
+      <th>dAUC_p_holm</th>
+      <th>dAUCPR_p_holm</th>
+      <th>dF1_p_holm</th>
+      <th>DeLong_p_holm</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>top-2 por entorno</td>
+      <td>sklearn: GradientBoosting vs RandomForest</td>
+      <td>2384</td>
+      <td>1942</td>
+      <td>0.0</td>
+      <td>chi2 con corrección</td>
+      <td>0.0036</td>
+      <td>0.0030</td>
+      <td>0.0042</td>
+      <td>0.0005</td>
+      <td>...</td>
+      <td>0.0723</td>
+      <td>0.0782</td>
+      <td>0.0005</td>
+      <td>0.0036</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.001</td>
+      <td>0.001</td>
+      <td>0.001</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>top-2 por entorno</td>
+      <td>pyspark: GradientBoosting vs RandomForest</td>
+      <td>3376</td>
+      <td>2958</td>
+      <td>0.0</td>
+      <td>chi2 con corrección</td>
+      <td>0.0044</td>
+      <td>0.0037</td>
+      <td>0.0050</td>
+      <td>0.0005</td>
+      <td>...</td>
+      <td>0.1011</td>
+      <td>0.1080</td>
+      <td>0.0005</td>
+      <td>0.0044</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.001</td>
+      <td>0.001</td>
+      <td>0.001</td>
+      <td>0.0</td>
+    </tr>
+  </tbody>
+</table>
+<p>2 rows × 25 columns</p>
+</div>
+    <div class="colab-df-buttons">
+
+  <div class="colab-df-container">
+    <button class="colab-df-convert" onclick="convertToInteractive('df-ed57ceab-bba0-4c70-9720-5bb0a6846c01')"
+            title="Convert this dataframe to an interactive table."
+            style="display:none;">
+
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960">
+    <path d="M120-120v-720h720v720H120Zm60-500h600v-160H180v160Zm220 220h160v-160H400v160Zm0 220h160v-160H400v160ZM180-400h160v-160H180v160Zm440 0h160v-160H620v160ZM180-180h160v-160H180v160Zm440 0h160v-160H620v160Z"/>
+  </svg>
+    </button>
+
+  <style>
+    .colab-df-container {
+      display:flex;
+      gap: 12px;
+    }
+
+    .colab-df-convert {
+      background-color: #E8F0FE;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      fill: #1967D2;
+      height: 32px;
+      padding: 0 0 0 0;
+      width: 32px;
+    }
+
+    .colab-df-convert:hover {
+      background-color: #E2EBFA;
+      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+      fill: #174EA6;
+    }
+
+    .colab-df-buttons div {
+      margin-bottom: 4px;
+    }
+
+    [theme=dark] .colab-df-convert {
+      background-color: #3B4455;
+      fill: #D2E3FC;
+    }
+
+    [theme=dark] .colab-df-convert:hover {
+      background-color: #434B5C;
+      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+      fill: #FFFFFF;
+    }
+  </style>
+
+    <script>
+      const buttonEl =
+        document.querySelector('#df-ed57ceab-bba0-4c70-9720-5bb0a6846c01 button.colab-df-convert');
+      buttonEl.style.display =
+        google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+      async function convertToInteractive(key) {
+        const element = document.querySelector('#df-ed57ceab-bba0-4c70-9720-5bb0a6846c01');
+        const dataTable =
+          await google.colab.kernel.invokeFunction('convertToInteractive',
+                                                    [key], {});
+        if (!dataTable) return;
+
+        const docLinkHtml = 'Like what you see? Visit the ' +
+          '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
+          + ' to learn more about interactive tables.';
+        element.innerHTML = '';
+        dataTable['output_type'] = 'display_data';
+        await google.colab.output.renderOutput(dataTable, element);
+        const docLink = document.createElement('div');
+        docLink.innerHTML = docLinkHtml;
+        element.appendChild(docLink);
+      }
+    </script>
+  </div>
+
+
+    </div>
+  </div>
+</div></div>
 </div>
 <p><strong>Nota sobre Holm:</strong> en esta tabla <code class="docutils literal notranslate"><span class="pre">DeLong_p_holm</span></code> se corrige dentro de cada familia de 6 y de 2 comparaciones. La corrección sobre las 15 comparaciones de modelos está en la sección 3.4.</p>
 </section>
@@ -799,6 +2398,294 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+  <div id="df-81df597d-8938-4a4c-a2ea-2d54e35e664e" class="colab-df-container">
+    <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Familia</th>
+      <th>Comparación</th>
+      <th>ΔAUC (DeLong)</th>
+      <th>p Holm DeLong</th>
+      <th>McNemar b/c</th>
+      <th>p Holm McNemar</th>
+      <th>ΔAUC boot [IC95]</th>
+      <th>p Holm boot AUC</th>
+      <th>ΔAUC-PR boot [IC95]</th>
+      <th>ΔF1 boot [IC95]</th>
+      <th>Relevante (|ΔAUC|≥0.005)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>entre entornos</td>
+      <td>NaiveBayes: sklearn vs PySpark</td>
+      <td>-0.0005</td>
+      <td>&lt;0.001</td>
+      <td>2303/918</td>
+      <td>&lt;0.001</td>
+      <td>-0.0005 [-0.0006, -0.0004]</td>
+      <td>0.003</td>
+      <td>-0.0008 [-0.0009, -0.0007]</td>
+      <td>0.0000 [-0.0004, 0.0005]</td>
+      <td>no</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>entre entornos</td>
+      <td>LogisticRegression: sklearn vs PySpark</td>
+      <td>-0.0000</td>
+      <td>0.163</td>
+      <td>65/52</td>
+      <td>0.802</td>
+      <td>-0.0000 [-0.0000, 0.0000]</td>
+      <td>0.178</td>
+      <td>-0.0000 [-0.0001, -0.0000]</td>
+      <td>0.0003 [-0.0001, 0.0007]</td>
+      <td>no</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>entre entornos</td>
+      <td>DecisionTree: sklearn vs PySpark</td>
+      <td>0.0012</td>
+      <td>0.025</td>
+      <td>2809/2982</td>
+      <td>0.095</td>
+      <td>0.0012 [0.0003, 0.0021]</td>
+      <td>0.016</td>
+      <td>0.0008 [-0.0010, 0.0027]</td>
+      <td>-0.0009 [-0.0041, 0.0023]</td>
+      <td>no</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>entre entornos</td>
+      <td>LinearSVC: sklearn vs PySpark</td>
+      <td>0.1027</td>
+      <td>&lt;0.001</td>
+      <td>1966/1610</td>
+      <td>&lt;0.001</td>
+      <td>0.1027 [0.0998, 0.1056]</td>
+      <td>0.003</td>
+      <td>0.0785 [0.0755, 0.0813]</td>
+      <td>0.0686 [0.0658, 0.0714]</td>
+      <td>sí</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>entre entornos</td>
+      <td>GradientBoosting: sklearn vs PySpark</td>
+      <td>0.0004</td>
+      <td>0.077</td>
+      <td>1571/1533</td>
+      <td>1.000</td>
+      <td>0.0004 [0.0000, 0.0008]</td>
+      <td>0.071</td>
+      <td>0.0008 [-0.0001, 0.0017]</td>
+      <td>-0.0250 [-0.0273, -0.0228]</td>
+      <td>no</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>entre entornos</td>
+      <td>RandomForest: sklearn vs PySpark</td>
+      <td>0.0012</td>
+      <td>&lt;0.001</td>
+      <td>437/423</td>
+      <td>1.000</td>
+      <td>0.0012 [0.0008, 0.0016]</td>
+      <td>0.003</td>
+      <td>0.0018 [0.0011, 0.0025]</td>
+      <td>0.0044 [0.0029, 0.0059]</td>
+      <td>no</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>top-2 por entorno</td>
+      <td>sklearn: GradientBoosting vs RandomForest</td>
+      <td>0.0036</td>
+      <td>&lt;0.001</td>
+      <td>2384/1942</td>
+      <td>&lt;0.001</td>
+      <td>0.0036 [0.0030, 0.0042]</td>
+      <td>&lt;0.001</td>
+      <td>0.0052 [0.0041, 0.0062]</td>
+      <td>0.0752 [0.0723, 0.0782]</td>
+      <td>no</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>top-2 por entorno</td>
+      <td>pyspark: GradientBoosting vs RandomForest</td>
+      <td>0.0044</td>
+      <td>&lt;0.001</td>
+      <td>3376/2958</td>
+      <td>&lt;0.001</td>
+      <td>0.0044 [0.0037, 0.0050]</td>
+      <td>&lt;0.001</td>
+      <td>0.0061 [0.0048, 0.0075]</td>
+      <td>0.1047 [0.1011, 0.1080]</td>
+      <td>no</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+    <div class="colab-df-buttons">
+
+  <div class="colab-df-container">
+    <button class="colab-df-convert" onclick="convertToInteractive('df-81df597d-8938-4a4c-a2ea-2d54e35e664e')"
+            title="Convert this dataframe to an interactive table."
+            style="display:none;">
+
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960">
+    <path d="M120-120v-720h720v720H120Zm60-500h600v-160H180v160Zm220 220h160v-160H400v160Zm0 220h160v-160H400v160ZM180-400h160v-160H180v160Zm440 0h160v-160H620v160ZM180-180h160v-160H180v160Zm440 0h160v-160H620v160Z"/>
+  </svg>
+    </button>
+
+  <style>
+    .colab-df-container {
+      display:flex;
+      gap: 12px;
+    }
+
+    .colab-df-convert {
+      background-color: #E8F0FE;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      fill: #1967D2;
+      height: 32px;
+      padding: 0 0 0 0;
+      width: 32px;
+    }
+
+    .colab-df-convert:hover {
+      background-color: #E2EBFA;
+      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+      fill: #174EA6;
+    }
+
+    .colab-df-buttons div {
+      margin-bottom: 4px;
+    }
+
+    [theme=dark] .colab-df-convert {
+      background-color: #3B4455;
+      fill: #D2E3FC;
+    }
+
+    [theme=dark] .colab-df-convert:hover {
+      background-color: #434B5C;
+      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+      fill: #FFFFFF;
+    }
+  </style>
+
+    <script>
+      const buttonEl =
+        document.querySelector('#df-81df597d-8938-4a4c-a2ea-2d54e35e664e button.colab-df-convert');
+      buttonEl.style.display =
+        google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+      async function convertToInteractive(key) {
+        const element = document.querySelector('#df-81df597d-8938-4a4c-a2ea-2d54e35e664e');
+        const dataTable =
+          await google.colab.kernel.invokeFunction('convertToInteractive',
+                                                    [key], {});
+        if (!dataTable) return;
+
+        const docLinkHtml = 'Like what you see? Visit the ' +
+          '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
+          + ' to learn more about interactive tables.';
+        element.innerHTML = '';
+        dataTable['output_type'] = 'display_data';
+        await google.colab.output.renderOutput(dataTable, element);
+        const docLink = document.createElement('div');
+        docLink.innerHTML = docLinkHtml;
+        element.appendChild(docLink);
+      }
+    </script>
+  </div>
+
+
+  <div id="id_f7c692d8-bb21-401f-8ab9-f0bb1edfdca9">
+    <style>
+      .colab-df-generate {
+        background-color: #E8F0FE;
+        border: none;
+        border-radius: 50%;
+        cursor: pointer;
+        display: none;
+        fill: #1967D2;
+        height: 32px;
+        padding: 0 0 0 0;
+        width: 32px;
+      }
+
+      .colab-df-generate:hover {
+        background-color: #E2EBFA;
+        box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+        fill: #174EA6;
+      }
+
+      [theme=dark] .colab-df-generate {
+        background-color: #3B4455;
+        fill: #D2E3FC;
+      }
+
+      [theme=dark] .colab-df-generate:hover {
+        background-color: #434B5C;
+        box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+        filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+        fill: #FFFFFF;
+      }
+    </style>
+    <button class="colab-df-generate" onclick="generateWithVariable('tabla')"
+            title="Generate code using this dataframe."
+            style="display:none;">
+
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
+       width="24px">
+    <path d="M7,19H8.4L18.45,9,17,7.55,7,17.6ZM5,21V16.75L18.45,3.32a2,2,0,0,1,2.83,0l1.4,1.43a1.91,1.91,0,0,1,.58,1.4,1.91,1.91,0,0,1-.58,1.4L9.25,21ZM18.45,9,17,7.55Zm-12,3A5.31,5.31,0,0,0,4.9,8.1,5.31,5.31,0,0,0,1,6.5,5.31,5.31,0,0,0,4.9,4.9,5.31,5.31,0,0,0,6.5,1,5.31,5.31,0,0,0,8.1,4.9,5.31,5.31,0,0,0,12,6.5,5.46,5.46,0,0,0,6.5,12Z"/>
+  </svg>
+    </button>
+    <script>
+      (() => {
+      const buttonEl =
+        document.querySelector('#id_f7c692d8-bb21-401f-8ab9-f0bb1edfdca9 button.colab-df-generate');
+      buttonEl.style.display =
+        google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+      buttonEl.onclick = () => {
+        google.colab.notebook.generateWithVariable('tabla');
+      }
+      })();
+    </script>
+  </div>
+
+    </div>
+  </div>
+</div></div>
 </div>
 </section>
 <section id="curvas-roc-tiempos-y-comparacion-de-entornos">
@@ -818,6 +2705,9 @@
 <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">();</span> <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">DIR_OUT</span> <span class="o">+</span> <span class="s1">'/roc_por_entorno.png'</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">150</span><span class="p">);</span> <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/65589fe1bdb8f44b6e41275eeaa0db6fd87592c2194ee8686540b2f915acfdc9.png" src="../_images/65589fe1bdb8f44b6e41275eeaa0db6fd87592c2194ee8686540b2f915acfdc9.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -843,6 +2733,177 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/0abd228b0002e62859d72d2f41b2accc5740a4e7bbbeff939cdb9c0c4ec9dc28.png" src="../_images/0abd228b0002e62859d72d2f41b2accc5740a4e7bbbeff939cdb9c0c4ec9dc28.png" />
+<div class="output text_html">
+  <div id="df-15ecbaef-de83-43c9-87c2-066d279913a5" class="colab-df-container">
+    <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>modelo</th>
+      <th>sklearn_entren_min</th>
+      <th>pyspark_entren_min</th>
+      <th>sklearn_pred_s</th>
+      <th>pyspark_pred_s</th>
+      <th>razon_spark/sklearn</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>NaiveBayes</td>
+      <td>0.01</td>
+      <td>0.03</td>
+      <td>0.29</td>
+      <td>1.56</td>
+      <td>4.00</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>LogisticRegression</td>
+      <td>0.55</td>
+      <td>2.92</td>
+      <td>0.06</td>
+      <td>0.62</td>
+      <td>5.32</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>DecisionTree</td>
+      <td>0.88</td>
+      <td>2.44</td>
+      <td>0.03</td>
+      <td>0.67</td>
+      <td>2.76</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>LinearSVC</td>
+      <td>1.20</td>
+      <td>5.56</td>
+      <td>0.05</td>
+      <td>0.56</td>
+      <td>4.64</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>GradientBoosting</td>
+      <td>1.96</td>
+      <td>36.92</td>
+      <td>1.79</td>
+      <td>2.26</td>
+      <td>18.87</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>RandomForest</td>
+      <td>10.77</td>
+      <td>111.05</td>
+      <td>3.01</td>
+      <td>101.75</td>
+      <td>10.31</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+    <div class="colab-df-buttons">
+
+  <div class="colab-df-container">
+    <button class="colab-df-convert" onclick="convertToInteractive('df-15ecbaef-de83-43c9-87c2-066d279913a5')"
+            title="Convert this dataframe to an interactive table."
+            style="display:none;">
+
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960">
+    <path d="M120-120v-720h720v720H120Zm60-500h600v-160H180v160Zm220 220h160v-160H400v160Zm0 220h160v-160H400v160ZM180-400h160v-160H180v160Zm440 0h160v-160H620v160ZM180-180h160v-160H180v160Zm440 0h160v-160H620v160Z"/>
+  </svg>
+    </button>
+
+  <style>
+    .colab-df-container {
+      display:flex;
+      gap: 12px;
+    }
+
+    .colab-df-convert {
+      background-color: #E8F0FE;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      fill: #1967D2;
+      height: 32px;
+      padding: 0 0 0 0;
+      width: 32px;
+    }
+
+    .colab-df-convert:hover {
+      background-color: #E2EBFA;
+      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+      fill: #174EA6;
+    }
+
+    .colab-df-buttons div {
+      margin-bottom: 4px;
+    }
+
+    [theme=dark] .colab-df-convert {
+      background-color: #3B4455;
+      fill: #D2E3FC;
+    }
+
+    [theme=dark] .colab-df-convert:hover {
+      background-color: #434B5C;
+      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+      fill: #FFFFFF;
+    }
+  </style>
+
+    <script>
+      const buttonEl =
+        document.querySelector('#df-15ecbaef-de83-43c9-87c2-066d279913a5 button.colab-df-convert');
+      buttonEl.style.display =
+        google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+      async function convertToInteractive(key) {
+        const element = document.querySelector('#df-15ecbaef-de83-43c9-87c2-066d279913a5');
+        const dataTable =
+          await google.colab.kernel.invokeFunction('convertToInteractive',
+                                                    [key], {});
+        if (!dataTable) return;
+
+        const docLinkHtml = 'Like what you see? Visit the ' +
+          '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
+          + ' to learn more about interactive tables.';
+        element.innerHTML = '';
+        dataTable['output_type'] = 'display_data';
+        await google.colab.output.renderOutput(dataTable, element);
+        const docLink = document.createElement('div');
+        docLink.innerHTML = docLinkHtml;
+        element.appendChild(docLink);
+      }
+    </script>
+  </div>
+
+
+    </div>
+  </div>
+</div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -855,6 +2916,9 @@
 <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">();</span> <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">DIR_OUT</span> <span class="o">+</span> <span class="s1">'/delong_entre_entornos.png'</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">150</span><span class="p">);</span> <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/c74f717fc4fde70008bfef2151115cc0b6f9c287d230764b1345b9de214e670f.png" src="../_images/c74f717fc4fde70008bfef2151115cc0b6f9c287d230764b1345b9de214e670f.png" />
 </div>
 </div>
 </section>

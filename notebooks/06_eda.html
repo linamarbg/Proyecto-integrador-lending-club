@@ -426,6 +426,13 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Mounted at /content/drive
+Archivo: /content/drive/MyDrive/ML_LendingClub/accepted_2007_to_2018q4.csv/accepted_2007_to_2018Q4.csv
+Dataset completo: 2,260,701 filas x 151 columnas (67 s)
+</pre></div>
+</div>
+</div>
 </div>
 </section>
 <section id="valores-faltantes-todas-las-columnas-del-archivo-original">
@@ -443,6 +450,182 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Columnas con &gt;50 % de faltantes: 44 de 151
+Columnas sin faltantes: 1
+</pre></div>
+</div>
+<img alt="../_images/7dd5d2a3c66fd4dcc4663f5535e5ab741180f2b266fafd153dfdd1065aed11d5.png" src="../_images/7dd5d2a3c66fd4dcc4663f5535e5ab741180f2b266fafd153dfdd1065aed11d5.png" />
+<div class="output text_html">
+  <div id="df-2cea8085-5ea8-4bb3-9a86-295167134f8b" class="colab-df-container">
+    <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>% faltante</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>member_id</th>
+      <td>100.0</td>
+    </tr>
+    <tr>
+      <th>orig_projected_additional_accrued_interest</th>
+      <td>99.6</td>
+    </tr>
+    <tr>
+      <th>hardship_reason</th>
+      <td>99.5</td>
+    </tr>
+    <tr>
+      <th>hardship_payoff_balance_amount</th>
+      <td>99.5</td>
+    </tr>
+    <tr>
+      <th>hardship_last_payment_amount</th>
+      <td>99.5</td>
+    </tr>
+    <tr>
+      <th>payment_plan_start_date</th>
+      <td>99.5</td>
+    </tr>
+    <tr>
+      <th>hardship_type</th>
+      <td>99.5</td>
+    </tr>
+    <tr>
+      <th>hardship_status</th>
+      <td>99.5</td>
+    </tr>
+    <tr>
+      <th>hardship_start_date</th>
+      <td>99.5</td>
+    </tr>
+    <tr>
+      <th>deferral_term</th>
+      <td>99.5</td>
+    </tr>
+    <tr>
+      <th>hardship_amount</th>
+      <td>99.5</td>
+    </tr>
+    <tr>
+      <th>hardship_dpd</th>
+      <td>99.5</td>
+    </tr>
+    <tr>
+      <th>hardship_loan_status</th>
+      <td>99.5</td>
+    </tr>
+    <tr>
+      <th>hardship_length</th>
+      <td>99.5</td>
+    </tr>
+    <tr>
+      <th>hardship_end_date</th>
+      <td>99.5</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+    <div class="colab-df-buttons">
+
+  <div class="colab-df-container">
+    <button class="colab-df-convert" onclick="convertToInteractive('df-2cea8085-5ea8-4bb3-9a86-295167134f8b')"
+            title="Convert this dataframe to an interactive table."
+            style="display:none;">
+
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960">
+    <path d="M120-120v-720h720v720H120Zm60-500h600v-160H180v160Zm220 220h160v-160H400v160Zm0 220h160v-160H400v160ZM180-400h160v-160H180v160Zm440 0h160v-160H620v160ZM180-180h160v-160H180v160Zm440 0h160v-160H620v160Z"/>
+  </svg>
+    </button>
+
+  <style>
+    .colab-df-container {
+      display:flex;
+      gap: 12px;
+    }
+
+    .colab-df-convert {
+      background-color: #E8F0FE;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      fill: #1967D2;
+      height: 32px;
+      padding: 0 0 0 0;
+      width: 32px;
+    }
+
+    .colab-df-convert:hover {
+      background-color: #E2EBFA;
+      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+      fill: #174EA6;
+    }
+
+    .colab-df-buttons div {
+      margin-bottom: 4px;
+    }
+
+    [theme=dark] .colab-df-convert {
+      background-color: #3B4455;
+      fill: #D2E3FC;
+    }
+
+    [theme=dark] .colab-df-convert:hover {
+      background-color: #434B5C;
+      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+      fill: #FFFFFF;
+    }
+  </style>
+
+    <script>
+      const buttonEl =
+        document.querySelector('#df-2cea8085-5ea8-4bb3-9a86-295167134f8b button.colab-df-convert');
+      buttonEl.style.display =
+        google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+      async function convertToInteractive(key) {
+        const element = document.querySelector('#df-2cea8085-5ea8-4bb3-9a86-295167134f8b');
+        const dataTable =
+          await google.colab.kernel.invokeFunction('convertToInteractive',
+                                                    [key], {});
+        if (!dataTable) return;
+
+        const docLinkHtml = 'Like what you see? Visit the ' +
+          '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
+          + ' to learn more about interactive tables.';
+        element.innerHTML = '';
+        dataTable['output_type'] = 'display_data';
+        await google.colab.output.renderOutput(dataTable, element);
+        const docLink = document.createElement('div');
+        docLink.innerHTML = docLinkHtml;
+        element.appendChild(docLink);
+      }
+    </script>
+  </div>
+
+
+    </div>
+  </div>
+</div></div>
 </div>
 </section>
 <section id="poblacion-de-estudio-y-variable-objetivo">
@@ -463,6 +646,24 @@
 <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">();</span> <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">DIR_OUT</span> <span class="o">+</span> <span class="s1">'/objetivo.png'</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">150</span><span class="p">);</span> <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                                                          n
+loan_status                                                
+Fully Paid                                          1076751
+Current                                              878317
+Charged Off                                          268559
+Late (31-120 days)                                    21467
+In Grace Period                                        8436
+Late (16-30 days)                                      4349
+Does not meet the credit policy. Status:Fully Paid     1988
+Does not meet the credit policy. Status:Charged...      761
+Default                                                  40
+
+Población de estudio: 1,345,310 préstamos | tasa de default: 19.96 %
+</pre></div>
+</div>
+<img alt="../_images/3b8140d3a6d6147ab91740ae627626b7d3a8a8247049e4fbac03a25483e2d5b8.png" src="../_images/3b8140d3a6d6147ab91740ae627626b7d3a8a8247049e4fbac03a25483e2d5b8.png" />
 </div>
 </div>
 </section>
@@ -485,6 +686,383 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+  <div id="df-28be07db-9dad-45ad-97ce-99686209a26e" class="colab-df-container">
+    <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>count</th>
+      <th>mean</th>
+      <th>std</th>
+      <th>min</th>
+      <th>1%</th>
+      <th>25%</th>
+      <th>50%</th>
+      <th>75%</th>
+      <th>99%</th>
+      <th>max</th>
+      <th>faltantes_%</th>
+      <th>asimetria</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>loan_amnt</th>
+      <td>1345310.0</td>
+      <td>14419.97</td>
+      <td>8717.05</td>
+      <td>500.00</td>
+      <td>1500.00</td>
+      <td>8000.00</td>
+      <td>12000.00</td>
+      <td>20000.00</td>
+      <td>35000.00</td>
+      <td>40000.00</td>
+      <td>0.00</td>
+      <td>0.78</td>
+    </tr>
+    <tr>
+      <th>int_rate</th>
+      <td>1345310.0</td>
+      <td>13.24</td>
+      <td>4.77</td>
+      <td>5.31</td>
+      <td>5.32</td>
+      <td>9.75</td>
+      <td>12.74</td>
+      <td>15.99</td>
+      <td>26.30</td>
+      <td>30.99</td>
+      <td>0.00</td>
+      <td>0.71</td>
+    </tr>
+    <tr>
+      <th>installment</th>
+      <td>1345310.0</td>
+      <td>438.08</td>
+      <td>261.51</td>
+      <td>4.93</td>
+      <td>52.86</td>
+      <td>248.48</td>
+      <td>375.43</td>
+      <td>580.73</td>
+      <td>1221.50</td>
+      <td>1719.83</td>
+      <td>0.00</td>
+      <td>1.01</td>
+    </tr>
+    <tr>
+      <th>annual_inc</th>
+      <td>1345310.0</td>
+      <td>76247.64</td>
+      <td>69925.10</td>
+      <td>0.00</td>
+      <td>18000.00</td>
+      <td>45780.00</td>
+      <td>65000.00</td>
+      <td>90000.00</td>
+      <td>250000.00</td>
+      <td>10999200.00</td>
+      <td>0.00</td>
+      <td>46.32</td>
+    </tr>
+    <tr>
+      <th>dti</th>
+      <td>1344936.0</td>
+      <td>18.28</td>
+      <td>11.16</td>
+      <td>-1.00</td>
+      <td>1.78</td>
+      <td>11.79</td>
+      <td>17.61</td>
+      <td>24.06</td>
+      <td>38.47</td>
+      <td>999.00</td>
+      <td>0.03</td>
+      <td>27.11</td>
+    </tr>
+    <tr>
+      <th>fico_range_high</th>
+      <td>1345310.0</td>
+      <td>700.19</td>
+      <td>31.85</td>
+      <td>629.00</td>
+      <td>664.00</td>
+      <td>674.00</td>
+      <td>694.00</td>
+      <td>714.00</td>
+      <td>804.00</td>
+      <td>850.00</td>
+      <td>0.00</td>
+      <td>1.29</td>
+    </tr>
+    <tr>
+      <th>delinq_2yrs</th>
+      <td>1345310.0</td>
+      <td>0.32</td>
+      <td>0.88</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>4.00</td>
+      <td>39.00</td>
+      <td>0.00</td>
+      <td>5.60</td>
+    </tr>
+    <tr>
+      <th>inq_last_6mths</th>
+      <td>1345309.0</td>
+      <td>0.66</td>
+      <td>0.94</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>1.00</td>
+      <td>4.00</td>
+      <td>8.00</td>
+      <td>0.00</td>
+      <td>1.70</td>
+    </tr>
+    <tr>
+      <th>open_acc</th>
+      <td>1345310.0</td>
+      <td>11.59</td>
+      <td>5.47</td>
+      <td>0.00</td>
+      <td>3.00</td>
+      <td>8.00</td>
+      <td>11.00</td>
+      <td>14.00</td>
+      <td>29.00</td>
+      <td>90.00</td>
+      <td>0.00</td>
+      <td>1.30</td>
+    </tr>
+    <tr>
+      <th>pub_rec</th>
+      <td>1345310.0</td>
+      <td>0.22</td>
+      <td>0.60</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>2.00</td>
+      <td>86.00</td>
+      <td>0.00</td>
+      <td>11.56</td>
+    </tr>
+    <tr>
+      <th>revol_bal</th>
+      <td>1345310.0</td>
+      <td>16248.11</td>
+      <td>22328.17</td>
+      <td>0.00</td>
+      <td>171.00</td>
+      <td>5943.00</td>
+      <td>11134.00</td>
+      <td>19755.75</td>
+      <td>94553.91</td>
+      <td>2904836.00</td>
+      <td>0.00</td>
+      <td>13.75</td>
+    </tr>
+    <tr>
+      <th>revol_util</th>
+      <td>1344453.0</td>
+      <td>51.81</td>
+      <td>24.52</td>
+      <td>0.00</td>
+      <td>1.10</td>
+      <td>33.40</td>
+      <td>52.20</td>
+      <td>70.70</td>
+      <td>98.20</td>
+      <td>892.30</td>
+      <td>0.06</td>
+      <td>-0.04</td>
+    </tr>
+    <tr>
+      <th>total_acc</th>
+      <td>1345310.0</td>
+      <td>24.98</td>
+      <td>12.00</td>
+      <td>2.00</td>
+      <td>5.00</td>
+      <td>16.00</td>
+      <td>23.00</td>
+      <td>32.00</td>
+      <td>61.00</td>
+      <td>176.00</td>
+      <td>0.00</td>
+      <td>0.96</td>
+    </tr>
+    <tr>
+      <th>mort_acc</th>
+      <td>1298029.0</td>
+      <td>1.67</td>
+      <td>2.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>1.00</td>
+      <td>3.00</td>
+      <td>8.00</td>
+      <td>51.00</td>
+      <td>3.51</td>
+      <td>1.64</td>
+    </tr>
+    <tr>
+      <th>pub_rec_bankruptcies</th>
+      <td>1344613.0</td>
+      <td>0.13</td>
+      <td>0.38</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>1.00</td>
+      <td>12.00</td>
+      <td>0.05</td>
+      <td>3.44</td>
+    </tr>
+    <tr>
+      <th>term_meses</th>
+      <td>1345310.0</td>
+      <td>41.79</td>
+      <td>10.27</td>
+      <td>36.00</td>
+      <td>36.00</td>
+      <td>36.00</td>
+      <td>36.00</td>
+      <td>36.00</td>
+      <td>60.00</td>
+      <td>60.00</td>
+      <td>0.00</td>
+      <td>1.21</td>
+    </tr>
+    <tr>
+      <th>emp_length_anios</th>
+      <td>1266799.0</td>
+      <td>5.97</td>
+      <td>3.69</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>2.00</td>
+      <td>6.00</td>
+      <td>10.00</td>
+      <td>10.00</td>
+      <td>10.00</td>
+      <td>5.84</td>
+      <td>-0.22</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+    <div class="colab-df-buttons">
+
+  <div class="colab-df-container">
+    <button class="colab-df-convert" onclick="convertToInteractive('df-28be07db-9dad-45ad-97ce-99686209a26e')"
+            title="Convert this dataframe to an interactive table."
+            style="display:none;">
+
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960">
+    <path d="M120-120v-720h720v720H120Zm60-500h600v-160H180v160Zm220 220h160v-160H400v160Zm0 220h160v-160H400v160ZM180-400h160v-160H180v160Zm440 0h160v-160H620v160ZM180-180h160v-160H180v160Zm440 0h160v-160H620v160Z"/>
+  </svg>
+    </button>
+
+  <style>
+    .colab-df-container {
+      display:flex;
+      gap: 12px;
+    }
+
+    .colab-df-convert {
+      background-color: #E8F0FE;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      fill: #1967D2;
+      height: 32px;
+      padding: 0 0 0 0;
+      width: 32px;
+    }
+
+    .colab-df-convert:hover {
+      background-color: #E2EBFA;
+      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+      fill: #174EA6;
+    }
+
+    .colab-df-buttons div {
+      margin-bottom: 4px;
+    }
+
+    [theme=dark] .colab-df-convert {
+      background-color: #3B4455;
+      fill: #D2E3FC;
+    }
+
+    [theme=dark] .colab-df-convert:hover {
+      background-color: #434B5C;
+      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+      fill: #FFFFFF;
+    }
+  </style>
+
+    <script>
+      const buttonEl =
+        document.querySelector('#df-28be07db-9dad-45ad-97ce-99686209a26e button.colab-df-convert');
+      buttonEl.style.display =
+        google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+      async function convertToInteractive(key) {
+        const element = document.querySelector('#df-28be07db-9dad-45ad-97ce-99686209a26e');
+        const dataTable =
+          await google.colab.kernel.invokeFunction('convertToInteractive',
+                                                    [key], {});
+        if (!dataTable) return;
+
+        const docLinkHtml = 'Like what you see? Visit the ' +
+          '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
+          + ' to learn more about interactive tables.';
+        element.innerHTML = '';
+        dataTable['output_type'] = 'display_data';
+        await google.colab.output.renderOutput(dataTable, element);
+        const docLink = document.createElement('div');
+        docLink.innerHTML = docLinkHtml;
+        element.appendChild(docLink);
+      }
+    </script>
+  </div>
+
+
+    </div>
+  </div>
+</div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -499,6 +1077,9 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/38de6883c28509a7c3b9ec86c4e42a140f3391b3cd8bafe0022dd8dca99fa033.png" src="../_images/38de6883c28509a7c3b9ec86c4e42a140f3391b3cd8bafe0022dd8dca99fa033.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -509,6 +1090,18 @@
 <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">();</span> <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">DIR_OUT</span> <span class="o">+</span> <span class="s1">'/univariado_categoricas.png'</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">130</span><span class="p">);</span> <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">'addr_state: </span><span class="si">%d</span><span class="s1"> estados; los 5 más frecuentes:'</span> <span class="o">%</span> <span class="n">df</span><span class="p">[</span><span class="s1">'addr_state'</span><span class="p">]</span><span class="o">.</span><span class="n">nunique</span><span class="p">())</span>
 <span class="nb">print</span><span class="p">((</span><span class="n">df</span><span class="p">[</span><span class="s1">'addr_state'</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">(</span><span class="n">normalize</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span> <span class="o">*</span> <span class="mi">100</span><span class="p">)</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">to_string</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/8bbd02418f7e3b3273adc1893c977375679a3275d1ba8ba70edd1745ac601016.png" src="../_images/8bbd02418f7e3b3273adc1893c977375679a3275d1ba8ba70edd1745ac601016.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>addr_state: 51 estados; los 5 más frecuentes:
+addr_state
+CA    14.6
+TX     8.2
+NY     8.2
+FL     7.1
+IL     3.8
 </pre></div>
 </div>
 </div>
@@ -530,6 +1123,9 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/8c91547794c9fcf6c2cda89d6875aab83e42ad5a653d7acf2492bda14bafe5bf.png" src="../_images/8c91547794c9fcf6c2cda89d6875aab83e42ad5a653d7acf2492bda14bafe5bf.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -546,6 +1142,9 @@
 <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">();</span> <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">DIR_OUT</span> <span class="o">+</span> <span class="s1">'/bivariado_deciles.png'</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">130</span><span class="p">);</span> <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/c768fd8d7a55bc2fda7a053eee01be4a863bf03cf7894c6dc8cfc978d0422cab.png" src="../_images/c768fd8d7a55bc2fda7a053eee01be4a863bf03cf7894c6dc8cfc978d0422cab.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -565,6 +1164,186 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/0e15640c730f5d82e8e4e92b26a91aff5e99a45a976cccb3e1ebb6f02c26c85d.png" src="../_images/0e15640c730f5d82e8e4e92b26a91aff5e99a45a976cccb3e1ebb6f02c26c85d.png" />
+<div class="output text_html">
+  <div id="df-c2dacf2c-633a-42fb-8e8f-efa132712dc6" class="colab-df-container">
+    <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>corr con default</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>fico_range_high</th>
+      <td>-0.131</td>
+    </tr>
+    <tr>
+      <th>mort_acc</th>
+      <td>-0.075</td>
+    </tr>
+    <tr>
+      <th>annual_inc</th>
+      <td>-0.042</td>
+    </tr>
+    <tr>
+      <th>revol_bal</th>
+      <td>-0.020</td>
+    </tr>
+    <tr>
+      <th>emp_length_anios</th>
+      <td>-0.014</td>
+    </tr>
+    <tr>
+      <th>total_acc</th>
+      <td>-0.011</td>
+    </tr>
+    <tr>
+      <th>delinq_2yrs</th>
+      <td>0.019</td>
+    </tr>
+    <tr>
+      <th>pub_rec_bankruptcies</th>
+      <td>0.025</td>
+    </tr>
+    <tr>
+      <th>pub_rec</th>
+      <td>0.026</td>
+    </tr>
+    <tr>
+      <th>open_acc</th>
+      <td>0.028</td>
+    </tr>
+    <tr>
+      <th>installment</th>
+      <td>0.052</td>
+    </tr>
+    <tr>
+      <th>revol_util</th>
+      <td>0.060</td>
+    </tr>
+    <tr>
+      <th>inq_last_6mths</th>
+      <td>0.065</td>
+    </tr>
+    <tr>
+      <th>loan_amnt</th>
+      <td>0.066</td>
+    </tr>
+    <tr>
+      <th>dti</th>
+      <td>0.085</td>
+    </tr>
+    <tr>
+      <th>term_meses</th>
+      <td>0.176</td>
+    </tr>
+    <tr>
+      <th>int_rate</th>
+      <td>0.259</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+    <div class="colab-df-buttons">
+
+  <div class="colab-df-container">
+    <button class="colab-df-convert" onclick="convertToInteractive('df-c2dacf2c-633a-42fb-8e8f-efa132712dc6')"
+            title="Convert this dataframe to an interactive table."
+            style="display:none;">
+
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960">
+    <path d="M120-120v-720h720v720H120Zm60-500h600v-160H180v160Zm220 220h160v-160H400v160Zm0 220h160v-160H400v160ZM180-400h160v-160H180v160Zm440 0h160v-160H620v160ZM180-180h160v-160H180v160Zm440 0h160v-160H620v160Z"/>
+  </svg>
+    </button>
+
+  <style>
+    .colab-df-container {
+      display:flex;
+      gap: 12px;
+    }
+
+    .colab-df-convert {
+      background-color: #E8F0FE;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      fill: #1967D2;
+      height: 32px;
+      padding: 0 0 0 0;
+      width: 32px;
+    }
+
+    .colab-df-convert:hover {
+      background-color: #E2EBFA;
+      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+      fill: #174EA6;
+    }
+
+    .colab-df-buttons div {
+      margin-bottom: 4px;
+    }
+
+    [theme=dark] .colab-df-convert {
+      background-color: #3B4455;
+      fill: #D2E3FC;
+    }
+
+    [theme=dark] .colab-df-convert:hover {
+      background-color: #434B5C;
+      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+      fill: #FFFFFF;
+    }
+  </style>
+
+    <script>
+      const buttonEl =
+        document.querySelector('#df-c2dacf2c-633a-42fb-8e8f-efa132712dc6 button.colab-df-convert');
+      buttonEl.style.display =
+        google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+      async function convertToInteractive(key) {
+        const element = document.querySelector('#df-c2dacf2c-633a-42fb-8e8f-efa132712dc6');
+        const dataTable =
+          await google.colab.kernel.invokeFunction('convertToInteractive',
+                                                    [key], {});
+        if (!dataTable) return;
+
+        const docLinkHtml = 'Like what you see? Visit the ' +
+          '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
+          + ' to learn more about interactive tables.';
+        element.innerHTML = '';
+        dataTable['output_type'] = 'display_data';
+        await google.colab.output.renderOutput(dataTable, element);
+        const docLink = document.createElement('div');
+        docLink.innerHTML = docLinkHtml;
+        element.appendChild(docLink);
+      }
+    </script>
+  </div>
+
+
+    </div>
+  </div>
+</div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -579,6 +1358,184 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/afc90c962c1dba50290fba66816e990ecc672e9c11200ba5682a1a90f7d2facb.png" src="../_images/afc90c962c1dba50290fba66816e990ecc672e9c11200ba5682a1a90f7d2facb.png" />
+<div class="output text_html">
+  <div id="df-323a7623-c214-4f4f-9304-f0e4c5df4d65" class="colab-df-container">
+    <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>mean</th>
+      <th>size</th>
+    </tr>
+    <tr>
+      <th>anio</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2007</th>
+      <td>0.179</td>
+      <td>251</td>
+    </tr>
+    <tr>
+      <th>2008</th>
+      <td>0.158</td>
+      <td>1562</td>
+    </tr>
+    <tr>
+      <th>2009</th>
+      <td>0.126</td>
+      <td>4716</td>
+    </tr>
+    <tr>
+      <th>2010</th>
+      <td>0.129</td>
+      <td>11536</td>
+    </tr>
+    <tr>
+      <th>2011</th>
+      <td>0.152</td>
+      <td>21721</td>
+    </tr>
+    <tr>
+      <th>2012</th>
+      <td>0.162</td>
+      <td>53367</td>
+    </tr>
+    <tr>
+      <th>2013</th>
+      <td>0.156</td>
+      <td>134804</td>
+    </tr>
+    <tr>
+      <th>2014</th>
+      <td>0.184</td>
+      <td>223102</td>
+    </tr>
+    <tr>
+      <th>2015</th>
+      <td>0.202</td>
+      <td>375545</td>
+    </tr>
+    <tr>
+      <th>2016</th>
+      <td>0.233</td>
+      <td>293095</td>
+    </tr>
+    <tr>
+      <th>2017</th>
+      <td>0.231</td>
+      <td>169300</td>
+    </tr>
+    <tr>
+      <th>2018</th>
+      <td>0.157</td>
+      <td>56311</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+    <div class="colab-df-buttons">
+
+  <div class="colab-df-container">
+    <button class="colab-df-convert" onclick="convertToInteractive('df-323a7623-c214-4f4f-9304-f0e4c5df4d65')"
+            title="Convert this dataframe to an interactive table."
+            style="display:none;">
+
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960">
+    <path d="M120-120v-720h720v720H120Zm60-500h600v-160H180v160Zm220 220h160v-160H400v160Zm0 220h160v-160H400v160ZM180-400h160v-160H180v160Zm440 0h160v-160H620v160ZM180-180h160v-160H180v160Zm440 0h160v-160H620v160Z"/>
+  </svg>
+    </button>
+
+  <style>
+    .colab-df-container {
+      display:flex;
+      gap: 12px;
+    }
+
+    .colab-df-convert {
+      background-color: #E8F0FE;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      fill: #1967D2;
+      height: 32px;
+      padding: 0 0 0 0;
+      width: 32px;
+    }
+
+    .colab-df-convert:hover {
+      background-color: #E2EBFA;
+      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+      fill: #174EA6;
+    }
+
+    .colab-df-buttons div {
+      margin-bottom: 4px;
+    }
+
+    [theme=dark] .colab-df-convert {
+      background-color: #3B4455;
+      fill: #D2E3FC;
+    }
+
+    [theme=dark] .colab-df-convert:hover {
+      background-color: #434B5C;
+      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+      fill: #FFFFFF;
+    }
+  </style>
+
+    <script>
+      const buttonEl =
+        document.querySelector('#df-323a7623-c214-4f4f-9304-f0e4c5df4d65 button.colab-df-convert');
+      buttonEl.style.display =
+        google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+      async function convertToInteractive(key) {
+        const element = document.querySelector('#df-323a7623-c214-4f4f-9304-f0e4c5df4d65');
+        const dataTable =
+          await google.colab.kernel.invokeFunction('convertToInteractive',
+                                                    [key], {});
+        if (!dataTable) return;
+
+        const docLinkHtml = 'Like what you see? Visit the ' +
+          '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
+          + ' to learn more about interactive tables.';
+        element.innerHTML = '';
+        dataTable['output_type'] = 'display_data';
+        await google.colab.output.renderOutput(dataTable, element);
+        const docLink = document.createElement('div');
+        docLink.innerHTML = docLinkHtml;
+        element.appendChild(docLink);
+      }
+    </script>
+  </div>
+
+
+    </div>
+  </div>
+</div></div>
 </div>
 </section>
 <section id="resumen-ejecutivo-se-calcula-con-los-datos">
@@ -598,6 +1555,18 @@
 <span class="s1">- Variables del modelo con más faltantes: '''</span> <span class="o">+</span> <span class="s1">', '</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s1"> (</span><span class="si">{</span><span class="n">v</span><span class="si">:</span><span class="s1">.1f</span><span class="si">}</span><span class="s1"> %)'</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">faltantes_modelo</span><span class="o">.</span><span class="n">items</span><span class="p">())</span> <span class="o">+</span> <span class="s1">'''.</span>
 <span class="s1">- Implicación para el modelado: con clases desbalanceadas conviene usar AUC / AUC-PR y no la exactitud,</span>
 <span class="s1">  que se vería inflada por la clase mayoritaria. (Interpreta aquí cuán fuertes son las relaciones a la luz de los resultados.)'''</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>RESUMEN EJECUTIVO
+- Población: 1,345,310 préstamos cerrados; tasa de default 20.0 % (clases desbalanceadas, ~1 de cada 5).
+- Las tres variables numéricas más correlacionadas con el default: int_rate (+0.26), term_meses (+0.18), fico_range_high (-0.13).
+- Default por decil de tasa de interés: del decil más bajo (4.9 %) al más alto (40.2 %).
+- El plazo importa: default a 36 meses 16.0 %, a 60 meses 32.4 %.
+- Variables del modelo con más faltantes: emp_length_anios (5.8 %), mort_acc (3.5 %), revol_util (0.1 %).
+- Implicación para el modelado: con clases desbalanceadas conviene usar AUC / AUC-PR y no la exactitud,
+  que se vería inflada por la clase mayoritaria. (Interpreta aquí cuán fuertes son las relaciones a la luz de los resultados.)
 </pre></div>
 </div>
 </div>

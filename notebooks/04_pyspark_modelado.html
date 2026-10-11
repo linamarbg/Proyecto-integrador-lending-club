@@ -384,7 +384,6 @@
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modelos-y-espacios-de-busqueda">6. Modelos y espacios de búsqueda</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#entrenar-evaluar-y-guardar-con-puntos-de-control">7. Entrenar, evaluar y guardar (con puntos de control)</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#consolidar-resultados">8. Consolidar resultados</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#que-copiar-y-pegarme-en-el-chat">👉 Qué copiar y pegarme en el chat</a></li>
 </ul>
             </nav>
         </div>
@@ -419,11 +418,25 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0.001s][warning][os,container] Cgroup memory controller path at '/sys/fs/cgroup' seems to have moved to '/../../jupyter-children', detected limits won't be accurate
+[0.001s][warning][os,container] Cgroup cpu controller path at '/sys/fs/cgroup' seems to have moved to '/../../jupyter-children', detected limits won't be accurate
+openjdk version "21.0.12.1" 2026-08-18
+OpenJDK Runtime Environment (build 21.0.12.1+1-1-24.04.4-Ubuntu)
+OpenJDK 64-Bit Server VM (build 21.0.12.1+1-1-24.04.4-Ubuntu, mixed mode, sharing)
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">google.colab</span><span class="w"> </span><span class="kn">import</span> <span class="n">drive</span>
 <span class="n">drive</span><span class="o">.</span><span class="n">mount</span><span class="p">(</span><span class="s1">'/content/drive'</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Mounted at /content/drive
 </pre></div>
 </div>
 </div>
@@ -483,6 +496,12 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Spark 4.0.4 | hardware declarado: {'nucleos': 8, 'ram_gb': 54.8}
+Memoria del driver: 16g
+</pre></div>
+</div>
+</div>
 </div>
 </section>
 <section id="copiar-el-csv-al-disco-local-de-colab">
@@ -505,6 +524,12 @@
             <span class="n">shutil</span><span class="o">.</span><span class="n">copyfileobj</span><span class="p">(</span><span class="n">fi</span><span class="p">,</span> <span class="n">fo</span><span class="p">)</span>
 <span class="n">t_copia</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">t0</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'Origen: </span><span class="si">{</span><span class="n">origen</span><span class="si">}</span><span class="se">\n</span><span class="s1">CSV local: </span><span class="si">{</span><span class="n">CSV_LOCAL</span><span class="si">}</span><span class="s1"> (</span><span class="si">{</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">getsize</span><span class="p">(</span><span class="n">CSV_LOCAL</span><span class="p">)</span><span class="o">/</span><span class="mf">1e9</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1"> GB) | copia: </span><span class="si">{</span><span class="n">t_copia</span><span class="si">:</span><span class="s1">,.1f</span><span class="si">}</span><span class="s1"> s'</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Origen: /content/drive/MyDrive/ML_LendingClub/accepted_2007_to_2018q4.csv/accepted_2007_to_2018Q4.csv
+CSV local: /content/accepted_2007_to_2018Q4.csv (1.68 GB) | copia: 25.8 s
 </pre></div>
 </div>
 </div>
@@ -547,6 +572,13 @@
 <span class="k">if</span> <span class="ow">not</span> <span class="n">RAPIDO</span><span class="p">:</span>
     <span class="k">assert</span> <span class="n">conteos</span> <span class="o">==</span> <span class="n">ESPERADO</span><span class="p">,</span> <span class="s1">'Los conteos no coinciden con pandas: prueba MULTILINE=True y vuelve a ejecutar desde la sección 2'</span>
 <span class="k">assert</span> <span class="n">sin_split</span> <span class="o">==</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">'Hay ids sin partición: avísame'</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Carga + filtro + unión con la partición: 24.1 s | filas: 1,345,310
+Conteos por estado: {'Fully Paid': 1076751, 'Charged Off': 268559}
+Filas sin asignación train/test: 0
 </pre></div>
 </div>
 </div>
@@ -607,6 +639,13 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Preprocesamiento + materialización: 36.4 s
+train: 1,076,248 | test: 269,062
+Tamaño del vector de características: 99
+</pre></div>
+</div>
+</div>
 </div>
 </section>
 <section id="modelos-y-espacios-de-busqueda">
@@ -615,7 +654,7 @@
 <ul class="simple">
 <li><p>Regularización L2: <code class="docutils literal notranslate"><span class="pre">elasticNetParam=0</span></code> en regresión logística. <code class="docutils literal notranslate"><span class="pre">regParam</span> <span class="pre">∈</span> <span class="pre">{1e-6,</span> <span class="pre">1e-5,</span> <span class="pre">1e-4}</span></code> (en scikit-learn <code class="docutils literal notranslate"><span class="pre">C</span> <span class="pre">=</span> <span class="pre">1/(regParam·n)</span></code>).</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">standardization=False</span></code> en regresión logística y LinearSVC: los datos ya vienen escalados y así la regularización actúa igual que en scikit-learn.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">LinearSVC</span></code> de Spark solo implementa la pérdida <em>hinge</em>. En scikit-learn la versión final usa <code class="docutils literal notranslate"><span class="pre">squared_hinge</span></code> primal, porque con <code class="docutils literal notranslate"><span class="pre">hinge</span></code> dual se obtuvo un modelo degenerado (AUC 0.515); es una diferencia real entre entornos que se documenta en el informe.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">LinearSVC</span></code> de Spark solo implementa la pérdida <em>hinge</em>. En scikit-learn esa pérdida dio una solución degenerada, por lo que allí el modelo definitivo usa <code class="docutils literal notranslate"><span class="pre">squared_hinge</span></code>; es una diferencia de implementación que se discute en el informe.</p></li>
 <li><p>Árboles: <code class="docutils literal notranslate"><span class="pre">maxBins=32</span></code> (valor por defecto). Spark discretiza cada variable continua en un máximo de 32 intervalos; scikit-learn evalúa cortes exactos.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">BinaryClassificationEvaluator(numBins=0)</span></code>: AUC exacto, sin la aproximación de 1000 bins que Spark usa por defecto.</p></li>
 <li><p><strong>Columna de puntuación del evaluador:</strong> se usa la <code class="docutils literal notranslate"><span class="pre">probability</span></code> de la clase positiva (y <code class="docutils literal notranslate"><span class="pre">rawPrediction</span></code> solo en LinearSVC, que no produce probabilidades). La columna <code class="docutils literal notranslate"><span class="pre">rawPrediction</span></code> por defecto no sirve para ordenar en todos los modelos: en el árbol de decisión son conteos de entrenamiento por hoja (dependen del tamaño de la hoja, no de su pureza) y en Naive Bayes son log-verosimilitudes sin normalizar. Con ella el AUC saldría incorrecto, y también la selección del <code class="docutils literal notranslate"><span class="pre">CrossValidator</span></code>. Es una diferencia de implementación que conviene discutir en el informe.</p></li>
@@ -659,6 +698,11 @@
                                          <span class="n">metricName</span><span class="o">=</span><span class="s1">'areaUnderROC'</span><span class="p">,</span> <span class="n">numBins</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="s1">'Modelos:'</span><span class="p">,</span> <span class="nb">list</span><span class="p">(</span><span class="n">MODELOS</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Modelos: ['NaiveBayes', 'LogisticRegression', 'DecisionTree', 'LinearSVC', 'GradientBoosting', 'RandomForest']
 </pre></div>
 </div>
 </div>
@@ -748,6 +792,22 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[NaiveBayes] entrenando...
+[NaiveBayes] listo en 0.0 min | AUC=0.6298 (chequeo sklearn 0.6298) | mejores={}
+[LogisticRegression] entrenando...
+[LogisticRegression] listo en 2.9 min | AUC=0.7096 (chequeo sklearn 0.7096) | mejores={'regParam': 0.0001}
+[DecisionTree] entrenando...
+[DecisionTree] listo en 2.4 min | AUC=0.7007 (chequeo sklearn 0.7007) | mejores={'maxDepth': 10}
+[LinearSVC] entrenando...
+[LinearSVC] listo en 5.6 min | AUC=0.6066 (chequeo sklearn 0.6066) | mejores={'regParam': 1e-06}
+[GradientBoosting] entrenando...
+[GradientBoosting] listo en 36.9 min | AUC=0.7174 (chequeo sklearn 0.7174) | mejores={'maxIter': 100, 'maxDepth': 5}
+[RandomForest] entrenando...
+[RandomForest] listo en 111.1 min | AUC=0.7131 (chequeo sklearn 0.7131) | mejores={'numTrees': 100, 'maxDepth': 15}
+</pre></div>
+</div>
+</div>
 </div>
 </section>
 <section id="consolidar-resultados">
@@ -767,6 +827,225 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+  <div id="df-b099e6bb-8603-4ba1-8cd0-659c74502d9c" class="colab-df-container">
+    <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>auc</th>
+      <th>auc_chequeo_sklearn</th>
+      <th>auc_cv</th>
+      <th>accuracy</th>
+      <th>precision</th>
+      <th>recall</th>
+      <th>f1</th>
+      <th>t_entrenamiento_s</th>
+      <th>t_prediccion_s</th>
+      <th>t_transferencia_s</th>
+      <th>mejores_params</th>
+    </tr>
+    <tr>
+      <th>modelo</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>NaiveBayes</th>
+      <td>0.629826</td>
+      <td>0.629826</td>
+      <td>NaN</td>
+      <td>0.574340</td>
+      <td>0.269148</td>
+      <td>0.660057</td>
+      <td>0.382377</td>
+      <td>2.0</td>
+      <td>1.56</td>
+      <td>1.14</td>
+      <td>{}</td>
+    </tr>
+    <tr>
+      <th>LogisticRegression</th>
+      <td>0.709631</td>
+      <td>0.709631</td>
+      <td>0.709847</td>
+      <td>0.801447</td>
+      <td>0.517530</td>
+      <td>0.079424</td>
+      <td>0.137713</td>
+      <td>175.0</td>
+      <td>0.62</td>
+      <td>0.39</td>
+      <td>{'regParam': 0.0001}</td>
+    </tr>
+    <tr>
+      <th>DecisionTree</th>
+      <td>0.700734</td>
+      <td>0.700734</td>
+      <td>0.699676</td>
+      <td>0.801224</td>
+      <td>0.515623</td>
+      <td>0.070357</td>
+      <td>0.123818</td>
+      <td>146.4</td>
+      <td>0.67</td>
+      <td>0.42</td>
+      <td>{'maxDepth': 10}</td>
+    </tr>
+    <tr>
+      <th>LinearSVC</th>
+      <td>0.606583</td>
+      <td>0.606583</td>
+      <td>0.605140</td>
+      <td>0.800373</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>333.9</td>
+      <td>0.56</td>
+      <td>0.36</td>
+      <td>{'regParam': 1e-06}</td>
+    </tr>
+    <tr>
+      <th>GradientBoosting</th>
+      <td>0.717428</td>
+      <td>0.717428</td>
+      <td>0.717052</td>
+      <td>0.803506</td>
+      <td>0.552919</td>
+      <td>0.081993</td>
+      <td>0.142809</td>
+      <td>2215.2</td>
+      <td>2.26</td>
+      <td>0.52</td>
+      <td>{'maxIter': 100, 'maxDepth': 5}</td>
+    </tr>
+    <tr>
+      <th>RandomForest</th>
+      <td>0.713059</td>
+      <td>0.713059</td>
+      <td>0.712912</td>
+      <td>0.801953</td>
+      <td>0.625814</td>
+      <td>0.019679</td>
+      <td>0.038158</td>
+      <td>6663.0</td>
+      <td>101.75</td>
+      <td>37.75</td>
+      <td>{'numTrees': 100, 'maxDepth': 15}</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+    <div class="colab-df-buttons">
+
+  <div class="colab-df-container">
+    <button class="colab-df-convert" onclick="convertToInteractive('df-b099e6bb-8603-4ba1-8cd0-659c74502d9c')"
+            title="Convert this dataframe to an interactive table."
+            style="display:none;">
+
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960">
+    <path d="M120-120v-720h720v720H120Zm60-500h600v-160H180v160Zm220 220h160v-160H400v160Zm0 220h160v-160H400v160ZM180-400h160v-160H180v160Zm440 0h160v-160H620v160ZM180-180h160v-160H180v160Zm440 0h160v-160H620v160Z"/>
+  </svg>
+    </button>
+
+  <style>
+    .colab-df-container {
+      display:flex;
+      gap: 12px;
+    }
+
+    .colab-df-convert {
+      background-color: #E8F0FE;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      fill: #1967D2;
+      height: 32px;
+      padding: 0 0 0 0;
+      width: 32px;
+    }
+
+    .colab-df-convert:hover {
+      background-color: #E2EBFA;
+      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+      fill: #174EA6;
+    }
+
+    .colab-df-buttons div {
+      margin-bottom: 4px;
+    }
+
+    [theme=dark] .colab-df-convert {
+      background-color: #3B4455;
+      fill: #D2E3FC;
+    }
+
+    [theme=dark] .colab-df-convert:hover {
+      background-color: #434B5C;
+      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+      fill: #FFFFFF;
+    }
+  </style>
+
+    <script>
+      const buttonEl =
+        document.querySelector('#df-b099e6bb-8603-4ba1-8cd0-659c74502d9c button.colab-df-convert');
+      buttonEl.style.display =
+        google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+      async function convertToInteractive(key) {
+        const element = document.querySelector('#df-b099e6bb-8603-4ba1-8cd0-659c74502d9c');
+        const dataTable =
+          await google.colab.kernel.invokeFunction('convertToInteractive',
+                                                    [key], {});
+        if (!dataTable) return;
+
+        const docLinkHtml = 'Like what you see? Visit the ' +
+          '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
+          + ' to learn more about interactive tables.';
+        element.innerHTML = '';
+        dataTable['output_type'] = 'display_data';
+        await google.colab.output.renderOutput(dataTable, element);
+        const docLink = document.createElement('div');
+        docLink.innerHTML = docLinkHtml;
+        element.appendChild(docLink);
+      }
+    </script>
+  </div>
+
+
+    </div>
+  </div>
+</div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -785,15 +1064,22 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Guardado: /content/drive/MyDrive/ML_LendingClub/scores_pyspark.parquet (269062, 8)
+Tiempos comunes -&gt; copia CSV: 25.8 s | carga: 24.1 s | preprocesamiento: 36.4 s
+Matrices de confusión (tn, fp, fn, tp):
+                        tn     fp     fn     tp
+modelo                                         
+NaiveBayes          119080  96270  18259  35453
+LogisticRegression  211373   3977  49446   4266
+DecisionTree        211800   3550  49933   3779
+LinearSVC           215350      0  53712      0
+GradientBoosting    211789   3561  49308   4404
+RandomForest        214718    632  52655   1057
+</pre></div>
 </div>
-</section>
-<section id="que-copiar-y-pegarme-en-el-chat">
-<h2>👉 Qué copiar y pegarme en el chat<a class="headerlink" href="#que-copiar-y-pegarme-en-el-chat" title="Link to this heading">#</a></h2>
-<ol class="arabic simple">
-<li><p>Salida de las secciones 2, 4 y 5 (Spark, conteos, tiempos y tamaños).</p></li>
-<li><p>La tabla de resultados de la sección 8.</p></li>
-<li><p>Cualquier error, completo.</p></li>
-</ol>
+</div>
+</div>
 </section>
 </section>
 
@@ -871,7 +1157,6 @@
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modelos-y-espacios-de-busqueda">6. Modelos y espacios de búsqueda</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#entrenar-evaluar-y-guardar-con-puntos-de-control">7. Entrenar, evaluar y guardar (con puntos de control)</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#consolidar-resultados">8. Consolidar resultados</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#que-copiar-y-pegarme-en-el-chat">👉 Qué copiar y pegarme en el chat</a></li>
 </ul>
   </nav></div>
 
