@@ -1,0 +1,18 @@
+title: Proyecto Integrador de Aprendizaje Automático
+author: Lina Margarita Buelvas Gutiérrez y Camilo Molina Guerrero
+logo: ""
+execute:
+  execute_notebooks: force
+  timeout: 900
+  exclude_patterns:
+    - 'notebooks/*'
+parse:
+  myst_enable_extensions:
+    - dollarmath
+    - colon_fence
+sphinx:
+  config:
+    language: es
+html:
+  use_issues_button: false
+  use_repository_button: false

@@ -1,0 +1,18 @@
+format: jb-book
+root: intro
+chapters:
+  - file: 01_datos_eda
+  - file: 02_metodologia
+  - file: 03_resultados
+  - file: 04_pruebas
+  - file: 05_lime
+  - file: 06_reflexion
+  - file: apendice
+    sections:
+      - file: notebooks/01_carga_y_verificacion
+      - file: notebooks/02_target_y_particion
+      - file: notebooks/03_sklearn_modelado
+      - file: notebooks/04_pyspark_modelado
+      - file: notebooks/05_pruebas_estadisticas
+      - file: notebooks/06_eda
+      - file: notebooks/07_lime
