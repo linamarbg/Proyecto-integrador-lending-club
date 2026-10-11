@@ -1,3 +1,5 @@
+**Libro publicado:** https://linamarbg.github.io/Proyecto-integrador-lending-club/
+
 # Proyecto Integrador de Aprendizaje Automático: Lending Club
 
 Predicción de incumplimiento de préstamos de Lending Club comparando seis modelos en **scikit-learn** y **PySpark**, con el conjunto de datos completo, pruebas estadísticas (DeLong, McNemar y bootstrap pareado) e interpretabilidad local con LIME.
